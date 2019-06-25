@@ -9,7 +9,7 @@ const bot = linebot({
 
 bot.on('message', function (event) {
     console.log(event)
-    bot.push(event.source.userId, 'it works!').then(function (data) {
+    bot.push(U409fc59adb88b8b4c961b45674ce6ca1, event.message.text).then(function (data) {
     }).catch(function (error) {
     });
     /* event.reply(event.message.text).then(function (data) {
