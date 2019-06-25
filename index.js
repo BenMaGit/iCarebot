@@ -8,10 +8,9 @@ const bot = linebot({
 })
 
 bot.on('message', function (event) {
+    console.log(event)
     bot.push(event.source.userId, 'it works!').then(function (data) {
-     
     }).catch(function (error) {
-
     });
     /* event.reply(event.message.text).then(function (data) {
      
