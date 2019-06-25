@@ -8,11 +8,16 @@ const bot = linebot({
 })
 
 bot.on('message', function (event) {
-    event.reply(event.message.text).then(function (data) {
+    bot.push(event.source.userId, 'it works!').then(function (data) {
      
     }).catch(function (error) {
 
     });
+    /* event.reply(event.message.text).then(function (data) {
+     
+    }).catch(function (error) {
+
+    }); */
   });
 
 const app = express();
@@ -25,6 +30,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
     console.log("App now running on port", port);
 });
 
-bot.listen('/linewebhook', 3000, function () {
+bot.listen('/linewebhook', 8080, function () {
     console.log('BOT is ready');
+    
 });
