@@ -53,7 +53,11 @@ function autoReplyMessage(event, msg){
               ]
             }
           }
-          bot.reply(event.replyToken, appointmentTemplate)
+          event.reply(appointmentTemplate).then(function (data) {
+
+        }).catch(function (error) {
+    
+        });
        
     }else{
         event.reply(msg).then(function (data) {
