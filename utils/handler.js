@@ -8,8 +8,8 @@ const bot = linebot({
 });
 
 function autoReplyMessage(event, msg){
-    if(event.message.text == '線上預約'){
-        let appointmentTemplate = TemplateSendMessage({
+    if(event.message.text === '線上預約'){
+        let appointmentTemplate = {
             "type": "template",
             "altText": "this is a carousel template",
             "template": {
@@ -52,7 +52,7 @@ function autoReplyMessage(event, msg){
                 }
               ]
             }
-          })
+          }
           bot.reply(event.replyToken, appointmentTemplate)
        
     }else{
