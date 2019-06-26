@@ -1,26 +1,23 @@
 const linebot = require('linebot');
 const express = require('express')
 
-const bot = linebot({
-    channelId: '1591861988',
-    channelSecret: '760b25e4be02883716fa8608803220d6',
-    channelAccessToken: 'zr2GguG/HT18L9uoCoQkGoMXx8nVG4zXI4gFnRZEfMw5S1VRL0L8Lg4mwpNWEvZeirwXWMaItTHSCNIPVraMwxA4UCeLBqWJ4nf3G2AawST0rq4sJGA5JycW8CAVmzBQPaBeDUMudsGoGwIqCYtUowdB04t89/1O/w1cDnyilFU='
-})
+const msgProcessor = require('./utils/msgProcessor')
 
-bot.on('message', function (event) {
+msgProcessor.bot.on('message', function (event) {
     console.log(event)
+    msgProcessor.autoReplyMessage(event, "Yes you did it!")
+  
    /*  bot.push('U409fc59adb88b8b4c961b45674ce6ca1', event.message.text).then(function (data) {
     }).catch(function (error) {
     }); */
-    event.reply(event.message.text).then(function (data) {
-     
+    /* event.reply(event.message.text).then(function (data) {
     }).catch(function (error) {
 
-    });
+    }); */
   });
 
 const app = express();
-const linebotParser = bot.parser();
+const linebotParser = msgProcessor.bot.parser();
 app.post('/', linebotParser);
 
 var server = app.listen(process.env.PORT || 8080, function() {
