@@ -9,6 +9,7 @@ const bot = linebot({
 
 function autoReplyMessage(event, msg){
     if(event.message.text === '線上預約'){
+        console.log("In appointment")
         let appointmentTemplate = {
             "type": "template",
             "altText": "this is a carousel template",
@@ -17,7 +18,6 @@ function autoReplyMessage(event, msg){
               "actions": [],
               "columns": [
                 {
-                  "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL",
                   "title": "線上預約",
                   "text": "選擇下列時間",
                   "actions": [
@@ -34,7 +34,6 @@ function autoReplyMessage(event, msg){
                   ]
                 },
                 {
-                  "thumbnailImageUrl": "SPECIFY_YOUR_IMAGE_URL",
                   "title": "線上預約",
                   "text": "選擇下列時間",
                   "actions": [
@@ -60,6 +59,7 @@ function autoReplyMessage(event, msg){
         });
        
     }else{
+        console.log("Not in appointment")
         event.reply(msg).then(function (data) {
 
         }).catch(function (error) {
