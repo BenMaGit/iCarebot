@@ -87,4 +87,4 @@ function generateNextWeek(){
     return dateArray
 }
 
-module.exports = appointmentTemplate
+module.exports = {appointmentTemplate}
