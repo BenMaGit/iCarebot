@@ -1,3 +1,4 @@
+let nextNineDays = generateNextWeek()
 let appointmentTemplate = {
     "type": "template",
     "altText": "this is a carousel template",
@@ -11,18 +12,18 @@ let appointmentTemplate = {
           "actions": [
             {
               "type": "message",
-              "label": generateNextWeek[0],
-              "text": "選擇"+generateNextWeek[0]
+              "label": nextNineDays[0],
+              "text": "選擇"+nextNineDays[0]
             },
             {
               "type": "message",
-              "label": generateNextWeek[1],
-              "text": "選擇"+generateNextWeek[1]
+              "label": nextNineDays[1],
+              "text": "選擇"+nextNineDays[1]
             },
             {
               "type": "message",
-              "label": generateNextWeek[2],
-              "text": "選擇"+generateNextWeek[2]
+              "label": nextNineDays[2],
+              "text": "選擇"+nextNineDays[2]
             }
           ]
         },
@@ -32,18 +33,18 @@ let appointmentTemplate = {
           "actions": [
             {
               "type": "message",
-              "label": generateNextWeek[3],
-              "text": "選擇"+generateNextWeek[3]
+              "label": nextNineDays[3],
+              "text": "選擇"+nextNineDays[3]
             },
             {
               "type": "message",
-              "label": generateNextWeek[4],
-              "text": "選擇"+generateNextWeek[4]
+              "label": nextNineDays[4],
+              "text": "選擇"+nextNineDays[4]
             },
             {
               "type": "message",
-              "label": generateNextWeek[5],
-              "text": "選擇"+generateNextWeek[5]
+              "label": nextNineDays[5],
+              "text": "選擇"+nextNineDays[5]
             }
           ]
         },
@@ -53,18 +54,18 @@ let appointmentTemplate = {
             "actions": [
               {
                 "type": "message",
-                "label": generateNextWeek[6],
-                "text": "選擇"+generateNextWeek[6]
+                "label": nextNineDays[6],
+                "text": "選擇"+nextNineDays[6]
               },
               {
                 "type": "message",
-                "label": generateNextWeek[7],
-                "text": "選擇"+generateNextWeek[7]
+                "label": nextNineDays[7],
+                "text": "選擇"+nextNineDays[7]
               },
               {
                 "type": "message",
-                "label": generateNextWeek[8],
-                "text": "選擇"+generateNextWeek[8]
+                "label": nextNineDays[8],
+                "text": "選擇"+nextNineDays[8]
               }
             ]
         }
