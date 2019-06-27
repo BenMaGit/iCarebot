@@ -16,6 +16,10 @@ handler.bot.on('message', function (event) {
     }).catch(function (error) {
     }); */
   });
+handler.bot.on('postback', function (event) {
+console.log(event)
+
+})
 
 const app = express();
 const linebotParser = handler.bot.parser();
