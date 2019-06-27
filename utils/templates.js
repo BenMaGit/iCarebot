@@ -11,19 +11,22 @@ let appointmentTemplate = {
           "text": "選擇下列日期",
           "actions": [
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[0],
-              "text": "選擇"+nextNineDays[0]
+              "text": "選擇"+nextNineDays[0],
+              "data": nextNineDays[0]
             },
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[1],
-              "text": "選擇"+nextNineDays[1]
+              "text": "選擇"+nextNineDays[1],
+              "data": nextNineDays[1]
             },
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[2],
-              "text": "選擇"+nextNineDays[2]
+              "text": "選擇"+nextNineDays[2],
+              "data": nextNineDays[2]
             }
           ]
         },
@@ -32,19 +35,22 @@ let appointmentTemplate = {
           "text": "選擇下列日期",
           "actions": [
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[3],
-              "text": "選擇"+nextNineDays[3]
+              "text": "選擇"+nextNineDays[3],
+              "data": nextNineDays[3]
             },
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[4],
-              "text": "選擇"+nextNineDays[4]
+              "text": "選擇"+nextNineDays[4],
+              "data": nextNineDays[4]
             },
             {
-              "type": "message",
+              "type": "postback",
               "label": nextNineDays[5],
-              "text": "選擇"+nextNineDays[5]
+              "text": "選擇"+nextNineDays[5],
+              "data": nextNineDays[5]
             }
           ]
         },
@@ -53,19 +59,22 @@ let appointmentTemplate = {
             "text": "選擇下列日期",
             "actions": [
               {
-                "type": "message",
+                "type": "postback",
                 "label": nextNineDays[6],
-                "text": "選擇"+nextNineDays[6]
+                "text": "選擇"+nextNineDays[6],
+                "data": nextNineDays[6]
               },
               {
-                "type": "message",
+                "type": "postback",
                 "label": nextNineDays[7],
-                "text": "選擇"+nextNineDays[7]
+                "text": "選擇"+nextNineDays[7],
+                "data": nextNineDays[7]
               },
               {
-                "type": "message",
+                "type": "postback",
                 "label": nextNineDays[8],
-                "text": "選擇"+nextNineDays[8]
+                "text": "選擇"+nextNineDays[8],
+                "data": nextNineDays[8]
               }
             ]
         }
