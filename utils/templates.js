@@ -1,5 +1,5 @@
 
-let appointmentTemplate = () => {
+function appointmentTemplate (){
     let nextNineDays = generateNextWeek()
     let template = {
         "type": "template",
@@ -101,4 +101,7 @@ function generateNextWeek(){
     return dateArray
 }
 
-module.exports = {appointmentTemplate}
+module.exports = {
+    appointmentTemplate,
+    generateNextWeek
+}

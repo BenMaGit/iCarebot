@@ -11,7 +11,7 @@ const bot = linebot({
 function autoReplyMessage(event, msg){
     if(event.message.text === '線上預約'){
         console.log("In appointment")
-        let appointmentTemplate = template.appointmentTemplate
+        let appointmentTemplate = template.appointmentTemplate()
           event.reply(appointmentTemplate).then(function (data) {
 
         }).catch(function (error) {

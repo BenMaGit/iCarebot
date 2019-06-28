@@ -2,6 +2,7 @@ const linebot = require('linebot');
 const express = require('express')
 
 const handler = require('./utils/handler')
+const template = require('./utils/templates')
 
 handler.bot.on('message', function (event) {
     console.log(event)
@@ -28,6 +29,9 @@ app.post('/', linebotParser);
 var server = app.listen(process.env.PORT || 8080, function() {
     var port = server.address().port;
     console.log("App now running on port", port);
+    let templatetesting = template.appointmentTemplate()
+    console.log(templatetesting)
+
     
 });
 
