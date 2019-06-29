@@ -27,6 +27,7 @@ bot.on('message', function (event) {
   });
 bot.on('postback', function (event) {
     console.log(event)
+    controllers.commandHandler(event)
 
 })
 
