@@ -1,6 +1,6 @@
 const linebot = require('linebot');
 const express = require('express');
-const commandHandler = require('./controllers')
+const controllers = require('./controllers')
 
 const bot = linebot({
     channelId: '1591861988',
@@ -13,7 +13,7 @@ const replyHandler = require('./utils/replyHandler')
 
 bot.on('message', function (event) {
     console.log(event)
-    commandHandler(event)
+    controllers.commandHandler(event)
    /*  if(event.message.type === 'text'){
         replyHandler.autoReplyMessage(event, "Default Message")
     } */
