@@ -1,7 +1,6 @@
 const template = require('./templates')
 
 function autoReplyMessage(event, msg){
-    console.log(event)
     if(event.message.text === '線上預約'){
         console.log("In appointment")
         let appointmentTemplate = template.appointmentTemplate()
