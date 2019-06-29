@@ -11,15 +11,16 @@ function commandHandler(event){
                     autoReply.replyHandler(event, appointmentTemplate)
                     break;
             default:
-                    if(event.message.text.startsWith('選擇')){
-
-                    }else{
+                    if(!event.message.text.startsWith('選擇')){
                         autoReply.replyHandler(event, 'Default Message')
                     }
 
         }
+    }else if (event.type === 'postback'){
+        
     }
 }
+
 
 
 
