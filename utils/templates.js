@@ -86,6 +86,65 @@ function appointmentTemplate (){
       return template
 }
 
+let timeTemplate = {
+  "type": "template",
+  "altText": "this is a carousel template",
+  "template": {
+    "type": "carousel",
+    "actions": [],
+    "columns": [
+      {
+        "title": "線上預約",
+        "text": "選擇下列時間",
+        "actions": [
+          {
+            "type": "postback",
+            "label": "9:00 AM",
+            "text": "選擇 9:00 AM",
+            "data": "9:00 AM"
+          },
+          {
+            "type": "postback",
+            "label": "10:00 AM",
+            "text": "選擇 10:00 AM",
+            "data": "10:00 AM"
+          },
+          {
+            "type": "postback",
+            "label": "11:00 AM",
+            "text": "選擇 11:00 AM",
+            "data": "11:00 AM"
+          }
+        ]
+      },
+      {
+        "title": "線上預約",
+        "text": "選擇下列時間",
+        "actions": [
+          {
+            "type": "postback",
+            "label": "13:00 PM",
+            "text": "選擇 13:00 PM",
+            "data": "13:00 PM"
+          },
+          {
+            "type": "postback",
+            "label": "14:00 PM",
+            "text": "選擇 14:00 PM",
+            "data": "14:00 PM"
+          },
+          {
+            "type": "postback",
+            "label": "15:00 PM",
+            "text": "選擇 15:00 PM",
+            "data": "15:00 PM"
+          }
+        ]
+      }
+    ]
+  }
+}
+
 function generateNextWeek(){
     let j = 9
     let dateArray = []
@@ -103,5 +162,5 @@ function generateNextWeek(){
 
 module.exports = {
     appointmentTemplate,
-    generateNextWeek
+    timeTemplate
 }

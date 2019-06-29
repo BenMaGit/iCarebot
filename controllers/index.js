@@ -14,10 +14,16 @@ function commandHandler(event){
                     if(!event.message.text.startsWith('選擇')){
                         autoReply.replyHandler(event, 'Default Message')
                     }
-
         }
     }else if (event.type === 'postback'){
-        
+        switch (event.postback.data){
+            case '選擇時間':
+                    console.log("Pick a time")
+                    let timeTemplate = templates.timeTemplate
+                    autoReply.replyHandler(event, timeTemplate)
+                    break;
+
+        }
     }
 }
 
