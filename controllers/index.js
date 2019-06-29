@@ -10,7 +10,11 @@ function commandHandler(event){
                     autoReply.replyHandler(event, appointmentTemplate)
                     break;
             default:
-                    autoReply.replyHandler(event, 'Default Message')
+                    if(event.message.text.startWith('選擇')){
+
+                    }else{
+                        autoReply.replyHandler(event, 'Default Message')
+                    }
 
         }
     }
