@@ -3,7 +3,6 @@ const templates = require('../utils/templates')
 
 function commandHandler(event){
     if(event.message.type === 'text'){
-        
         switch (event.message.text){
             case '線上預約':
                     console.log("In appointment")
@@ -15,19 +14,23 @@ function commandHandler(event){
                         autoReply.replyHandler(event, 'Default Message')
                     }
         }
-    }else if (event.type === 'postback'){
-        switch (event.postback.data){
-            case '選擇時間':
-                    console.log("Pick a time")
-                    let timeTemplate = templates.timeTemplate
-                    autoReply.replyHandler(event, timeTemplate)
-                    break;
-
-        }
+    }
+}
+function postbackHandler(event){
+    switch (event.postback.data){
+        case '選擇時間':
+                console.log("Pick a time")
+                let timeTemplate = templates.timeTemplate
+                autoReply.replyHandler(event, timeTemplate)
+                break;
     }
 }
 
 
 
 
-module.exports = {commandHandler}
+module.exports = {
+    commandHandler,
+    postbackHandler
+
+}
