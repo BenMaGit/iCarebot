@@ -16,7 +16,7 @@ function appointmentTemplate (){
                   "type": "postback",
                   "label": nextNineDays[0],
                   "text": "選擇"+nextNineDays[0],
-                  "data": nextNineDays[0]
+                  "data": "選擇時間"
                 },
                 {
                   "type": "postback",
