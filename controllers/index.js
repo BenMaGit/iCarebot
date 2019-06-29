@@ -3,6 +3,7 @@ const templates = require('../utils/templates')
 
 function commandHandler(event){
     if(event.message.type === 'text'){
+        
         switch (event.message.text){
             case '線上預約':
                     console.log("In appointment")
@@ -10,7 +11,7 @@ function commandHandler(event){
                     autoReply.replyHandler(event, appointmentTemplate)
                     break;
             default:
-                    if(event.message.text.startWith('選擇')){
+                    if(event.message.text.startsWith('選擇')){
 
                     }else{
                         autoReply.replyHandler(event, 'Default Message')
