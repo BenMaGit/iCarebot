@@ -1,5 +1,10 @@
 const template = require('./templates')
 
+
+function replyHandler(event, msg){
+    return event.reply(msg)
+}
+
 function autoReplyMessage(event, msg){
     if(event.message.text === '線上預約'){
         console.log("In appointment")
@@ -29,6 +34,7 @@ function destinedMessage(event, msg, userID){
 }
 module.exports = {
     autoReplyMessage,
-    destinedMessage
+    destinedMessage,
+    replyHandler
     
 }
