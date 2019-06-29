@@ -4,11 +4,7 @@ const mongoose = require('mongoose')
 const controllers = require('./controllers')
 const configs = require('./configs')
 
-const bot = linebot({
-    channelId: '1591861988',
-    channelSecret: '760b25e4be02883716fa8608803220d6',
-    channelAccessToken: 'zr2GguG/HT18L9uoCoQkGoMXx8nVG4zXI4gFnRZEfMw5S1VRL0L8Lg4mwpNWEvZeirwXWMaItTHSCNIPVraMwxA4UCeLBqWJ4nf3G2AawST0rq4sJGA5JycW8CAVmzBQPaBeDUMudsGoGwIqCYtUowdB04t89/1O/w1cDnyilFU='
-});
+const bot = linebot(configs.botAccess);
 
 
 bot.on('message', function (event) {
