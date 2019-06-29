@@ -10,15 +10,26 @@ const bot = linebot({
 const replyHandler = require('./utils/replyHandler')
 
 
-bot.on('message', replyHandler.autoReplyMessage(event, "Default Message"))
-  
+bot.on('message', function (event) {
+    console.log(event)
+    if(event.message.type === 'text'){
+        replyHandler.autoReplyMessage(event, "Default Message")
+    }
+    
+   /*  bot.push('U409fc59adb88b8b4c961b45674ce6ca1', event.message.text).then(function (data) {
+    }).catch(function (error) {
+    });
+        event.reply(event.message.text).then(function (data) {
+    }).catch(function (error) {
+    }); */
+  });
 bot.on('postback', function (event) {
     console.log(event)
 
 })
 
 const app = express();
-const linebotParser = replyHandler.bot.parser();
+const linebotParser = bot.parser();
 app.post('/', linebotParser);
 
 var server = app.listen(process.env.PORT || 8080, function() {
