@@ -3,8 +3,14 @@ const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
 
 var appChart = {
-   date: String,
-   time: String,
+    date: '',
+    time: '',
+    set date(date){
+        this.date = date
+    },
+    set time(time){
+        this.time = time
+    }
 }
 var appointmentSheet = {}
 
