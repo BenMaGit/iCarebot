@@ -7,16 +7,15 @@ const confirmAppointment = async (event, date, time) =>{
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     if(existingAppt){
         existingAppt.remove()
-        autoReply.replyHandler(event, '清除先前所有預約紀錄')
     }
     if(!timeSlot){
+        console.log('Creating Appointment')
         let appointment = new Appointment({
             profile: {
                 "Name": "Subject one",
                 "userID": event.source.userId},
             date: date,
             time: time
-    
         })
         appointment.save().then(()=>{
             autoReply.replyHandler(event, '預約成功!' )
