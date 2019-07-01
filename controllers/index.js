@@ -2,15 +2,8 @@ const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
 
-var appChart = {
-    date: '',
-    time: '',
-    set date(date){
-        this.date = date
-    },
-    set time(time){
-        this.time = time
-    }
+var appChart = ()=>{
+  
 }
 var appointmentSheet = {}
 
@@ -21,7 +14,7 @@ function commandHandler(event){
                 case '線上預約':
                         console.log("In appointment")
                         let appointmentTemplate = templates.appointmentTemplate()
-                        appointmentSheet[event.source.userId] = new appChart({})
+                        appointmentSheet[event.source.userId] = new appChart()
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
                 default:
