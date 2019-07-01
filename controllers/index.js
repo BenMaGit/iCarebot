@@ -2,9 +2,9 @@ const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
 
-var appChart = function(){
-    date,
-    time
+var appChart = {
+   date: String,
+   time: String,
 }
 var appointmentSheet = {}
 
