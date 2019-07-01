@@ -19,6 +19,10 @@ function commandHandler(event){
                         appointmentSheet[event.source.userId] = new ApptChart()
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
+                case '預約查詢':
+                        console.log("Look up appointment")
+                        appoitnmentController.lookUpAppointment(event)
+                        break;
                 default:
                         /* if(!event.message.text.startsWith('選擇')){
                             autoReply.replyHandler(event, 'Default Message')

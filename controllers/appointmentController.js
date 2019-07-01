@@ -24,12 +24,21 @@ const confirmAppointment = async (event, date, time) =>{
     }else{
         autoReply.replyHandler(event, '已有人預約這個時段' )
     }
-    
+}
+
+const lookUpAppointment = async (event) =>{
+    let appointment = await Appointment.checkExistingAppt(event.source.userId)
+    if(!appointment){
+        autoReply.replyHandler(event, '您沒有任何預約')
+    }else{
+        autoReply.replyHandler(event, appointment.date + ' ' + appointment.time)
+    }
 }
 
 
 
 module.exports = {
-    confirmAppointment
+    confirmAppointment,
+    lookUpAppointment
 
 }
