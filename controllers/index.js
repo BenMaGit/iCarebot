@@ -44,8 +44,8 @@ function postbackHandler(event){
         case 'confirm':
                 console.log('Confirm')
                 appoitnmentController.confirmAppointment(event, 
-                    appointmentSheet[event.source.usedId].date, 
-                    appointmentSheet[event.source.usedId].time )
+                    appointmentSheet[event.source.userId].date, 
+                    appointmentSheet[event.source.userId].time )
                 break;
     }
 }
