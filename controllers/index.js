@@ -21,7 +21,7 @@ function commandHandler(event){
                 case '線上預約':
                         console.log("In appointment")
                         let appointmentTemplate = templates.appointmentTemplate()
-                        appointmentSheet[event.source.userId] = new appChart()
+                        appointmentSheet[event.source.userId] = new appChart({})
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
                 default:
