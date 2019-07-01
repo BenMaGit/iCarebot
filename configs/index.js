@@ -1,4 +1,4 @@
-const config = {
+const configs = {
     mongodb: 'mongodb+srv://Admin:Admin@bendatabase-0k9lx.gcp.mongodb.net/test?retryWrites=true&w=majority',
     botAccess: {
         channelId: '1591861988',
@@ -7,4 +7,4 @@ const config = {
     }
 }
 
-module.exports = config
+module.exports = configs
