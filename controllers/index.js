@@ -1,12 +1,13 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
-//temporary appointment storage for different users
+
+/* To differentiate user's appointment time
+using haspMap to store UserID, date and time */
 function ApptChart(){
 
 }
 var appointmentSheet = {}
-//
 
 function commandHandler(event){
     switch(event.message.type){
@@ -19,10 +20,10 @@ function commandHandler(event){
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
                 default:
-                        if(!event.message.text.startsWith('選擇')){
+                        /* if(!event.message.text.startsWith('選擇')){
                             autoReply.replyHandler(event, 'Default Message')
                         }
-                        break;
+                        break; */
             }
         break;
     } 
@@ -44,7 +45,8 @@ function postbackHandler(event){
                 break;
         case 'confirm':
                 console.log('Confirm')
-                appoitnmentController.confirmAppointment(event, 
+                appoitnmentController.confirmAppointment(
+                    event, 
                     appointmentSheet[event.source.userId].date, 
                     appointmentSheet[event.source.userId].time )
                 break;

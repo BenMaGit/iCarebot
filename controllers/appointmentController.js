@@ -1,23 +1,28 @@
 const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
+const autoReply = require('../utils/replyHandler')
 
 const confirmAppointment = async (event, date, time) =>{
     let timeSlot = await Appointment.checkAvailableTime(date, time)
+    let existingAppt = await Appointment.checkExistingAppt(userID)
+    if(existingAppt){
+        Appointment.deleteExistingAppt(userID)
+    }
     if(!timeSlot){
         let appointment = new Appointment({
             profile: {
                 "Name": "Subject one",
-                "ID": "This is userID"},
+                "userID": event.sourse.userId},
             date: date,
             time: time
     
         })
         appointment.save().then(()=>{
-            event.reply('預約成功!')
+            autoReply.replyHandler(event, '預約成功!' )
     
         })
     }else{
-        event.reply('已有人預約這個時段')
+        autoReply.replyHandler(event, '已有人預約這個時段' )
     }
     
 }
