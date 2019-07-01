@@ -4,7 +4,7 @@ const autoReply = require('../utils/replyHandler')
 
 const confirmAppointment = async (event, date, time) =>{
     let timeSlot = await Appointment.checkAvailableTime(date, time)
-    let existingAppt = await Appointment.checkExistingAppt(event.sourse.userId)
+    let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     if(existingAppt){
         Appointment.deleteExistingAppt(userID)
     }
@@ -12,7 +12,7 @@ const confirmAppointment = async (event, date, time) =>{
         let appointment = new Appointment({
             profile: {
                 "Name": "Subject one",
-                "userID": event.sourse.userId},
+                "userID": event.source.userId},
             date: date,
             time: time
     
