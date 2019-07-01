@@ -1,6 +1,7 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
+let date, time
 
 
 function commandHandler(event){
@@ -24,7 +25,6 @@ function commandHandler(event){
 }
 function postbackHandler(event){
     let action = event.postback.data.split(' ')
-    let date, time
     switch (action[0]){
         case '選擇日期':
                 console.log('Pick a time')
