@@ -32,7 +32,7 @@ function postbackHandler(event){
         case '選擇日期':
                 console.log('Pick a time')
                 let timeTemplate = templates.timeTemplate
-                appointmentSheet[event.source.usedId].date = action[1]
+                appointmentSheet[event.source.userId].date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;
         case '選擇時間':
