@@ -24,19 +24,24 @@ function commandHandler(event){
 }
 function postbackHandler(event){
     let action = event.postback.data.split(' ')
+    let date, time
     switch (action[0]){
         case '選擇日期':
                 console.log('Pick a time')
                 let timeTemplate = templates.timeTemplate
+                date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;
         case '選擇時間':
                 console.log('Please confirm action')
                 let confirmTemplate = templates.confirmTemplate
+                time = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
+                break;
         case 'confirm':
                 console.log('Confirm')
-                appoitnmentController.confirmAppointment(event)
+                appoitnmentController.confirmAppointment(event, date, time)
+                break;
     }
 }
 

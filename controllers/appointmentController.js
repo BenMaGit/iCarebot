@@ -1,17 +1,17 @@
 const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
 
-const confirmAppointment = (event) =>{
+const confirmAppointment = (event, date, time) =>{
     let appointment = new Appointment({
         profile: {
             "Name": "Subject one",
             "ID": "this is a buttons template"},
-        date: "2019/06/25",
-        time: "7:00 AM"
+        date: date,
+        time: time
 
     })
     appointment.save().then(()=>{
-        event.reply('Confrim Appointment')
+        event.reply('預約成功!')
 
     })
 }
