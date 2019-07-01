@@ -3,11 +3,11 @@ const Profile = require('../models/profile')
 const autoReply = require('../utils/replyHandler')
 
 const confirmAppointment = async (event, date, time) =>{
-    let timeSlot = await Appointment.checkAvailableTime(date, time)
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     if(existingAppt){
         await existingAppt.remove()
     }
+    let timeSlot = await Appointment.checkAvailableTime(date, time)
     if(!timeSlot){
         console.log('Creating Appointment')
         let appointment = new Appointment({
