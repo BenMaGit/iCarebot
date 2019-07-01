@@ -7,5 +7,8 @@ const appointmentSchema = new  Schema({
     time: String
 })
 
+appointmentSchema.statics.checkAvailableTime = function(date, time){
+    return this.findOne({date:date, time:time})
+}
 
 module.exports = mongoose.model('Appointment', appointmentSchema)
