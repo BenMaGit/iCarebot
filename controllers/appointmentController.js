@@ -6,7 +6,7 @@ const confirmAppointment = async (event, date, time) =>{
     let timeSlot = await Appointment.checkAvailableTime(date, time)
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     if(existingAppt){
-        Appointment.deleteExistingAppt(userID)
+        Appointment.deleteExistingAppt(event.source.userId)
     }
     if(!timeSlot){
         let appointment = new Appointment({
