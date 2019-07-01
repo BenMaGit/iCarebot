@@ -1,5 +1,6 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
+const appoitnmentController = require('./appointmentController')
 
 
 function commandHandler(event){
@@ -25,16 +26,17 @@ function postbackHandler(event){
     let action = event.postback.data.split(' ')
     switch (action[0]){
         case '選擇日期':
-                console.log("Pick a time")
+                console.log('Pick a time')
                 let timeTemplate = templates.timeTemplate
                 autoReply.replyHandler(event, timeTemplate)
                 break;
         case '選擇時間':
-                console.log("Please confirm actiom")
+                console.log('Please confirm action')
                 let confirmTemplate = templates.confirmTemplate
                 autoReply.replyHandler(event, confirmTemplate)
-
-
+        case 'confirm':
+                console.log('Confirm')
+                appoitnmentController.confirmAppointment(event)
     }
 }
 
