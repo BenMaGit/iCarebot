@@ -13,8 +13,5 @@ appointmentSchema.statics.checkAvailableTime = function(date, time){
 appointmentSchema.statics.checkExistingAppt = function(userID){
     return this.findOne({'profile.userID':userID})
 }
-appointmentSchema.statics.deleteExistingAppt = function(userID){
-    collection = mongoose.collection('appointment')
-    return collection.deleteOne({'profile.userID':userID})
-}
+
 module.exports = mongoose.model('Appointment', appointmentSchema)
