@@ -12,4 +12,4 @@ profileSchema.statics.lookUp = function (userID){
     return this.findOne({userID:userID})
 }
 
-module.exports = mongoose.model("Profile", infoSchema)
+module.exports = mongoose.model("Profile", profileSchema)
