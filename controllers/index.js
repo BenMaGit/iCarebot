@@ -22,7 +22,8 @@ function commandHandler(event){
     
 }
 function postbackHandler(event){
-    switch (event.postback.data){
+    let action = event.postback.data.split(' ')
+    switch (action[0]){
         case '選擇日期':
                 console.log("Pick a time")
                 let timeTemplate = templates.timeTemplate
