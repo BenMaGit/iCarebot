@@ -10,7 +10,7 @@ function appointmentTemplate (){
           "columns": [
             {
               "title": "線上預約",
-              "text": "選擇下列日期",
+              "text": "選擇下列日期 \n一次只能預約一個時段\n原有預約記錄會被刪除",
               "actions": [
                 {
                   "type": "postback",
@@ -34,7 +34,7 @@ function appointmentTemplate (){
             },
             {
               "title": "線上預約",
-              "text": "選擇下列日期",
+              "text": "選擇下列日期 \n一次只能預約一個時段\n原有預約記錄會被刪除",
               "actions": [
                 {
                   "type": "postback",
@@ -58,7 +58,7 @@ function appointmentTemplate (){
             },
             {
                 "title": "線上預約",
-                "text": "選擇下列日期",
+                "text": "選擇下列日期 \n一次只能預約一個時段\n原有預約記錄會被刪除",
                 "actions": [
                   {
                     "type": "postback",
