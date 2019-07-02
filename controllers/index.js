@@ -38,8 +38,10 @@ async function postbackHandler(event){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])
                 let timeTemplate = await appoitnmentController.generateAvailableTimeSlot(action[1])
-                console.log(JSON.stringify(timeTemplate))
-                console.log("My Carousel Template")
+                if(!timeTemplate){
+                    autoReply.replyHandler(event, "該日期時段已滿")
+                    break
+                }
                 appointmentSheet[event.source.userId].date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;

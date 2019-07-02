@@ -13,37 +13,32 @@ const generateAvailableTimeSlot = async (date) =>{
     for(let j = 0; j < appointmentDate.length; j++){
         bookedSlot.push(appointmentDate[j].time)
     }
+    //如果時段已滿
+    if(bookedSlot.length == 6){
+        return
+    }
     for(let i = 0; i < schedule.length; i ++){
         if(bookedSlot.includes(schedule[i])){
             continue
         }
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
-        console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
-        /* for(var property in template.timeActionTemplate(schedule[i])){
-            console.log(property + ": " + template.timeActionTemplate(schedule[i])[property])
-        } */
+        //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
             console.log(JSON.stringify(template.timeColumnTemplate(actionArray)))
-           /*  for(var property in template.timeColumnTemplate(actionArray)){
-                console.log(property + ": " + template.timeColumnTemplate(actionArray)[property])
-            } */
             actionArray = []
         }
     }
+    //補滿actions 
     while(actionArray.length < 3 && actionArray.length != 0){
         actionArray.push(template.timeActionTemplate('-'))
     }
-    console.log(JSON.stringify(actionArray))
+    //console.log(JSON.stringify(actionArray))
+    //需要一個新的column 
     if(actionArray.length == 3){
         columnArray.push(template.timeColumnTemplate(actionArray))
     }
-    
-    
-  /*   for(var property in template.timeTemplate(columnArray)){
-        console.log(template.timeTemplate(columnArray)[property])
-    } */
     let carouselTemplate = new template.timeTemplate(columnArray)
     return carouselTemplate
 }
