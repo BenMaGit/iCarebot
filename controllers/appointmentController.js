@@ -20,13 +20,13 @@ const generateAvailableTimeSlot = async (date) =>{
         }
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
         for(var property in template.timeActionTemplate(schedule[i])){
-            console.log(template.timeActionTemplate(schedule[i])[property])
+            console.log(property + ": " + template.timeActionTemplate(schedule[i])[property])
         }
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
             for(var property in template.timeColumnTemplate(actionArray)){
-                console.log(template.timeColumnTemplate(actionArray)[property])
+                console.log(property + ": " + template.timeColumnTemplate(actionArray)[property])
             }
             actionArray = []
         }
