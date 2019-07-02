@@ -16,7 +16,6 @@ function commandHandler(event){
                 case '線上預約':
                         console.log("In appointment")
                         let appointmentTemplate = templates.appointmentTemplate()
-                        console.log(appointmentTemplate)
                         appointmentSheet[event.source.userId] = new ApptChart()
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
@@ -39,7 +38,7 @@ async function postbackHandler(event){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])
                 let timeTemplate = await appoitnmentController.generateAvailableTimeSlot(action[1])
-                console.log(timeTemplate)
+                console.log(timeTemplate + "My Carousel Template")
                 appointmentSheet[event.source.userId].date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;

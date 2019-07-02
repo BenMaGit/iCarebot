@@ -19,14 +19,12 @@ const generateAvailableTimeSlot = async (date) =>{
             continue
         }
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
-        console.log("Action Template")
         for(var property in template.timeActionTemplate(schedule[i])){
             console.log(template.timeActionTemplate(schedule[i])[property])
         }
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
-            console.log("Column Template")
             for(var property in template.timeColumnTemplate(actionArray)){
                 console.log(template.timeColumnTemplate(actionArray)[property])
             }
@@ -35,13 +33,12 @@ const generateAvailableTimeSlot = async (date) =>{
     }
     if(actionArray.length != 0){
         columnArray.push(template.timeColumnTemplate(actionArray))
-        console.log("Column Template")
     }
-    for(var property in template.timeTemplate(columnArray)){
-        console.log("Carousel Template")
+  /*   for(var property in template.timeTemplate(columnArray)){
         console.log(template.timeTemplate(columnArray)[property])
-    }
-    return template.timeTemplate(columnArray)
+    } */
+    let carouselTemplate = template.timeTemplate(columnArray)
+    return carouselTemplate
     
 }
 const confirmAppointment = async (event, date, time) =>{
