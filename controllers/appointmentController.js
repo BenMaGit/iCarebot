@@ -8,18 +8,20 @@ const generateAvailableTimeSlot = async (event, date) =>{
     let schedule =['9:00', '10:00', '11:00', '13:00', '14:00', '15:00']
     let availableSlot = []
     let appointmentDate = await Appointment.findAvailableTime(date)
-    console.log(appointmentDate +" appDate")
     for(let i = 0; i < schedule.length; i ++){
         for(let j = 0; j < appointmentDate.length; j++){
-            console.log(appointmentDate[j]+" bookedAppointment")
             console.log(appointmentDate[j].time+" booked")
             if(schedule[i] === appointmentDate[j].time){
                 continue
             }
-            console.log(schedule[i])
+            
             availableSlot.push(schedule[i])
         }
     }
+    for(let k = 0; k < availableSlot.length; k++){
+        console.log(availableSlot[i] +" Available Time")
+    }
+    
 }
 const confirmAppointment = async (event, date, time) =>{
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
