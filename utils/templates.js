@@ -102,7 +102,7 @@ function timeColumnTemplate (actionTemplates){
     }
     return template
 }
-function timeTemplate (columns){
+function timeTemplate(columns){
   let template = {
     "type": "template",
     "altText": "this is a carousel template",

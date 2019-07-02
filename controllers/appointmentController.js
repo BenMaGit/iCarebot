@@ -21,16 +21,19 @@ const generateAvailableTimeSlot = async (date) =>{
         }
         console.log(schedule[i]+" Free Slot")
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
+        console.log(actionArray[0] + " in Array")
         console.log(template.timeActionTemplate(schedule[i])+" Action Template")
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
+            console.log(columnArray[0]+" in Array")
             console.log(template.timeColumnTemplate(actionArray)+" Column Template")
             actionArray = []
         }
     }
     if(actionArray.length != 0){
         columnArray.push(template.timeColumnTemplate(actionArray))
+        console.log(template.timeColumnTemplate(actionArray)+" Column Template")
     }
     return template.timeTemplate(columnArray)
     
