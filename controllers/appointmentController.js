@@ -32,9 +32,12 @@ const generateAvailableTimeSlot = async (date) =>{
             actionArray = []
         }
     }
-    if(actionArray.length != 0){
-        columnArray.push( template.timeColumnTemplate(actionArray))
+    while(actionArray.length < 3 && actionArray.length != 0){
+        actionArray.push(template.timeActionTemplate('-'))
     }
+    console.log(JSON.stringify(actionArray))
+    columnArray.push(template.timeColumnTemplate(actionArray))
+    
   /*   for(var property in template.timeTemplate(columnArray)){
         console.log(template.timeTemplate(columnArray)[property])
     } */
