@@ -18,14 +18,14 @@ const generateAvailableTimeSlot = async (date) =>{
         if(bookedSlot.includes(schedule[i])){
             continue
         }
-        let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
+        let actionLength = actionArray.push(new template.timeActionTemplate(schedule[i]))
         console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
         /* for(var property in template.timeActionTemplate(schedule[i])){
             console.log(property + ": " + template.timeActionTemplate(schedule[i])[property])
         } */
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
-            columnArray.push(template.timeColumnTemplate(actionArray))
+            columnArray.push(new template.timeColumnTemplate(actionArray))
             console.log(JSON.stringify(template.timeColumnTemplate(actionArray)))
            /*  for(var property in template.timeColumnTemplate(actionArray)){
                 console.log(property + ": " + template.timeColumnTemplate(actionArray)[property])
@@ -34,14 +34,13 @@ const generateAvailableTimeSlot = async (date) =>{
         }
     }
     if(actionArray.length != 0){
-        columnArray.push(template.timeColumnTemplate(actionArray))
+        columnArray.push(new template.timeColumnTemplate(actionArray))
     }
   /*   for(var property in template.timeTemplate(columnArray)){
         console.log(template.timeTemplate(columnArray)[property])
     } */
-    let carouselTemplate = template.timeTemplate(columnArray)
+    let carouselTemplate = new template.timeTemplate(columnArray)
     return carouselTemplate
-    
 }
 const confirmAppointment = async (event, date, time) =>{
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
