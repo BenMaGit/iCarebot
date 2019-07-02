@@ -9,15 +9,14 @@ const generateAvailableTimeSlot = async (event, date) =>{
     let availableSlot = []
     let appointmentDate = await Appointment.find().byDate(date)
     console.log(appointmentDate+" slots on date")
-    for(let i = 0; i < schedule.length; i ++){
-        for(let j = 0; j < appointmentDate.length; j++){
-            console.log(appointmentDate[j].time+" booked")
-            if(schedule[i] == appointmentDate[j].time){
+    for(let i = 0; i < appointmentDate.length; i ++){
+        for(let j = 0; j < schedule.length; j++){
+            if(schedule[j] == appointmentDate[i].time){
                 console.log(schedule[i]+" this time is booked")
-                continue
+                break
             }
             console.log(schedule[i]+" this is free time")
-            availableSlot.push(schedule[i])
+
         }
     }
     
