@@ -86,62 +86,32 @@ function appointmentTemplate (){
       return template
 }
 
-const timeTemplate = {
-  "type": "template",
-  "altText": "this is a carousel template",
-  "template": {
-    "type": "carousel",
-    "actions": [],
-    "columns": [
-      {
-        "title": "線上預約",
-        "text": "選擇下列時間",
-        "actions": [
-          {
-            "type": "postback",
-            "label": "9:00",
-            "text": "選擇 9:00AM",
-            "data": "選擇時間 9:00AM"
-          },
-          {
-            "type": "postback",
-            "label": "10:00",
-            "text": "選擇 10:00AM",
-            "data": "選擇時間 10:00AM"
-          },
-          {
-            "type": "postback",
-            "label": "11:00",
-            "text": "選擇 11:00AM",
-            "data": "選擇時間 11:00AM"
-          }
-        ]
-      },
-      {
-        "title": "線上預約",
-        "text": "選擇下列時間",
-        "actions": [
-          {
-            "type": "postback",
-            "label": "13:00",
-            "text": "選擇 13:00PM",
-            "data": "選擇時間 13:00PM"
-          },
-          {
-            "type": "postback",
-            "label": "14:00",
-            "text": "選擇 14:00PM",
-            "data": "選擇時間 14:00PM"
-          },
-          {
-            "type": "postback",
-            "label": "15:00",
-            "text": "選擇 15:00PM",
-            "data": "選擇時間 15:00PM"
-          }
-        ]
-      }
-    ]
+const timeActionTemplate = function (time) {
+  let template = {
+    "type": "postback",
+    "label": time,
+    "text": "選擇 "+ time,
+    "data": "選擇時間"+ time
+  }
+  return template
+}
+const timeColumnTemplate = function (actionTemplates){
+  let template = {
+    "title": "線上預約",
+    "text": "選擇下列時間",
+    "actions":actionTemplates
+  }
+  return template
+}
+const timeTemplate = function (columns){
+  let template = {
+    "type": "template",
+    "altText": "this is a carousel template",
+    "template": {
+      "type": "carousel",
+      "actions": [],
+      "columns": columns
+    }
   }
 }
 const confirmTemplate = {
@@ -186,5 +156,7 @@ function generateNextWeek(){
 module.exports = {
     appointmentTemplate,
     timeTemplate,
-    confirmTemplate
+    confirmTemplate,
+    timeActionTemplate,
+    timeColumnTemplate
 }

@@ -4,10 +4,12 @@ const autoReply = require('../utils/replyHandler')
 const template = require('../utils/templates')
 
 
-const generateAvailableTimeSlot = async (event, date) =>{
+const generateAvailableTimeSlot = async (date) =>{
     let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
     let availableSlot = []
     let bookedSlot =[]
+    let actionArray = []
+    let columnArray = []
     let appointmentDate = await Appointment.find().byDate(date)
     console.log(appointmentDate+" slots on date")
     for(let j = 0; j < appointmentDate.length; j++){
@@ -18,8 +20,14 @@ const generateAvailableTimeSlot = async (event, date) =>{
             continue
         }
         console.log(schedule[i]+" Free Slot")
-        availableSlot.push(schedule[i])
+        let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
+        //一個 actionTemplate 只會有三個actions
+        if(actionLength == 3){
+            columnArray.push(template.timeColumnTemplate(actionArray))
+            actionArray = []
+        }
     }
+    return template.timeTemplate(columnArray)
     
 }
 const confirmAppointment = async (event, date, time) =>{
