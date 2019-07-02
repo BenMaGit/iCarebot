@@ -21,8 +21,10 @@ const generateAvailableTimeSlot = async (date) =>{
         }
         console.log(schedule[i]+" Free Slot")
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
-        console.log(actionArray[0] + " in Array")
         console.log(template.timeActionTemplate(schedule[i])+" Action Template")
+        for(var property in template.timeActionTemplate(schedule[i])){
+            console.log(template.timeActionTemplate(schedule[i])[property])
+        }
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
