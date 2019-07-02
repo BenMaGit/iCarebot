@@ -113,6 +113,7 @@ const timeTemplate = function (columns){
       "columns": columns
     }
   }
+  return template
 }
 const confirmTemplate = {
   "type": "template",
