@@ -11,7 +11,6 @@ const generateAvailableTimeSlot = async (date) =>{
     let actionArray = []
     let columnArray = []
     let appointmentDate = await Appointment.find().byDate(date)
-    console.log(appointmentDate+" slots on date")
     for(let j = 0; j < appointmentDate.length; j++){
         bookedSlot.push(appointmentDate[j].time)
     }
@@ -19,16 +18,15 @@ const generateAvailableTimeSlot = async (date) =>{
         if(bookedSlot.includes(schedule[i])){
             continue
         }
-        console.log(schedule[i]+" Free Slot")
         let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
-        console.log(template.timeActionTemplate(schedule[i])+" Action Template")
+        console.log("Action Template")
         for(var property in template.timeActionTemplate(schedule[i])){
             console.log(template.timeActionTemplate(schedule[i])[property])
         }
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
             columnArray.push(template.timeColumnTemplate(actionArray))
-            console.log(template.timeColumnTemplate(actionArray)+" Column Template")
+            console.log("Column Template")
             for(var property in template.timeColumnTemplate(actionArray)){
                 console.log(template.timeColumnTemplate(actionArray)[property])
             }
@@ -37,9 +35,10 @@ const generateAvailableTimeSlot = async (date) =>{
     }
     if(actionArray.length != 0){
         columnArray.push(template.timeColumnTemplate(actionArray))
-        console.log(template.timeColumnTemplate(actionArray)+" Column Template")
+        console.log("Column Template")
     }
     for(var property in template.timeTemplate(columnArray)){
+        console.log("Carousel Template")
         console.log(template.timeTemplate(columnArray)[property])
     }
     return template.timeTemplate(columnArray)

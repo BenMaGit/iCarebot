@@ -39,6 +39,7 @@ function postbackHandler(event){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])
                 let timeTemplate = appoitnmentController.generateAvailableTimeSlot(action[1])
+                console.log(timeTemplate)
                 appointmentSheet[event.source.userId].date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;
