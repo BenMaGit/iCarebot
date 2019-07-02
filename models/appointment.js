@@ -16,5 +16,5 @@ appointmentSchema.statics.checkExistingAppt = function(userID){
 appointmentSchema.static.findbyDate = function(date){
     return this.find({date:date})
 }
-x
+
 module.exports = mongoose.model('Appointment', appointmentSchema)
