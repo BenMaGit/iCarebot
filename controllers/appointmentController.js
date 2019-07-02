@@ -6,7 +6,6 @@ const template = require('../utils/templates')
 
 const generateAvailableTimeSlot = async (date) =>{
     let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
-    let availableSlot = []
     let bookedSlot =[]
     let actionArray = []
     let columnArray = []
@@ -18,14 +17,14 @@ const generateAvailableTimeSlot = async (date) =>{
         if(bookedSlot.includes(schedule[i])){
             continue
         }
-        let actionLength = actionArray.push(new template.timeActionTemplate(schedule[i]))
+        let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
         console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
         /* for(var property in template.timeActionTemplate(schedule[i])){
             console.log(property + ": " + template.timeActionTemplate(schedule[i])[property])
         } */
         //一個 actionTemplate 只會有三個actions
         if(actionLength == 3){
-            columnArray.push(new template.timeColumnTemplate(actionArray))
+            columnArray.push(template.timeColumnTemplate(actionArray))
             console.log(JSON.stringify(template.timeColumnTemplate(actionArray)))
            /*  for(var property in template.timeColumnTemplate(actionArray)){
                 console.log(property + ": " + template.timeColumnTemplate(actionArray)[property])
@@ -34,7 +33,7 @@ const generateAvailableTimeSlot = async (date) =>{
         }
     }
     if(actionArray.length != 0){
-        columnArray.push(new template.timeColumnTemplate(actionArray))
+        columnArray.push( template.timeColumnTemplate(actionArray))
     }
   /*   for(var property in template.timeTemplate(columnArray)){
         console.log(template.timeTemplate(columnArray)[property])
