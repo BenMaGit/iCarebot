@@ -7,21 +7,18 @@ const template = require('../utils/templates')
 const generateAvailableTimeSlot = async (event, date) =>{
     let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
     let availableSlot = []
+    let bookedSlot =[]
     let appointmentDate = await Appointment.find().byDate(date)
-    let j = 0
     console.log(appointmentDate+" slots on date")
+    for(let j = 0; j < appointmentDate.length; j++){
+        bookedSlot.push(appointmentDate[j].time)
+    }
     for(let i = 0; i < schedule.length; i ++){
-        for(let j; j < appointmentDate.length; j++){
-            if(schedule[i] == appointmentDate[j].time){
-                console.log(schedule[i]+" this time is booked")
-                break
-            }
-            if(j == appointmentDate.length){
-                j = 0
-                console.log(schedule[i]+" this is free time")
-                availableSlot.push(schedule[i])
-            }
+        if(bookedSlot.includes(schedule[i])){
+            continue
         }
+        console.log(appointmentDate+" Free Slot")
+        availableSlot.push(schedule[i])
     }
     
 }
