@@ -99,21 +99,21 @@ const timeTemplate = {
         "actions": [
           {
             "type": "postback",
-            "label": "9:00 AM",
-            "text": "選擇 9:00 AM",
-            "data": "選擇時間 9:00 AM"
+            "label": "9:00",
+            "text": "選擇 9:00AM",
+            "data": "選擇時間 9:00AM"
           },
           {
             "type": "postback",
-            "label": "10:00 AM",
-            "text": "選擇 10:00 AM",
-            "data": "選擇時間 10:00 AM"
+            "label": "10:00",
+            "text": "選擇 10:00AM",
+            "data": "選擇時間 10:00AM"
           },
           {
             "type": "postback",
-            "label": "11:00 AM",
-            "text": "選擇 11:00 AM",
-            "data": "選擇時間 11:00 AM"
+            "label": "11:00",
+            "text": "選擇 11:00AM",
+            "data": "選擇時間 11:00AM"
           }
         ]
       },
@@ -123,21 +123,21 @@ const timeTemplate = {
         "actions": [
           {
             "type": "postback",
-            "label": "13:00 PM",
-            "text": "選擇 13:00 PM",
-            "data": "選擇時間 13:00 PM"
+            "label": "13:00",
+            "text": "選擇 13:00PM",
+            "data": "選擇時間 13:00PM"
           },
           {
             "type": "postback",
-            "label": "14:00 PM",
-            "text": "選擇 14:00 PM",
-            "data": "選擇時間 14:00 PM"
+            "label": "14:00",
+            "text": "選擇 14:00PM",
+            "data": "選擇時間 14:00PM"
           },
           {
             "type": "postback",
-            "label": "15:00 PM",
-            "text": "選擇 15:00 PM",
-            "data": "選擇時間 15:00 PM"
+            "label": "15:00",
+            "text": "選擇 15:00PM",
+            "data": "選擇時間 15:00PM"
           }
         ]
       }

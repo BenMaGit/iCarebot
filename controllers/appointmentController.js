@@ -1,7 +1,23 @@
 const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
 const autoReply = require('../utils/replyHandler')
+const template = require('../utils/templates')
 
+
+const generateAvailableTimeSlot = async (event, date) =>{
+    let schedule =['9:00', '10:00', '11:00', '13:00', '14:00', '15:00']
+    let availableSlot = []
+    let date = await Appointment.findAvailableTime(date)
+    for(let i = 0; i < schedule.length; i ++){
+        for(let appointment in date){
+            if(schedule[i] === appointment.time){
+                continue
+            }
+            console.log(schedule[i])
+            availableSlot.push(schedule[i])
+        }
+    }
+}
 const confirmAppointment = async (event, date, time) =>{
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     if(existingAppt){
@@ -31,7 +47,7 @@ const lookUpAppointment = async (event) =>{
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
-        autoReply.replyHandler(event, appointment.date + ' ' + appointment.time)
+        autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
     }
 }
 
@@ -39,6 +55,7 @@ const lookUpAppointment = async (event) =>{
 
 module.exports = {
     confirmAppointment,
-    lookUpAppointment
+    lookUpAppointment,
+    generateAvailableTimeSlot
 
 }
