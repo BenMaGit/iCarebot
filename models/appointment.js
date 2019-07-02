@@ -13,8 +13,8 @@ appointmentSchema.statics.checkAvailableTime = function(date, time){
 appointmentSchema.statics.checkExistingAppt = function(userID){
     return this.findOne({'profile.userID':userID})
 }
-appointmentSchema.query.byDate = function(date){
-    return this.where({date:date})
+appointmentSchema.static.findbyDate = function(date){
+    return this.find({date:date})
 }
-
+x
 module.exports = mongoose.model('Appointment', appointmentSchema)
