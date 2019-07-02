@@ -7,9 +7,9 @@ const template = require('../utils/templates')
 const generateAvailableTimeSlot = async (event, date) =>{
     let schedule =['9:00', '10:00', '11:00', '13:00', '14:00', '15:00']
     let availableSlot = []
-    let date = await Appointment.findAvailableTime(date)
+    let appointmentDate = await Appointment.findAvailableTime(date)
     for(let i = 0; i < schedule.length; i ++){
-        for(let appointment in date){
+        for(let appointment in appointmentDate){
             if(schedule[i] === appointment.time){
                 continue
             }
