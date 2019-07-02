@@ -15,7 +15,7 @@ const generateAvailableTimeSlot = async (event, date) =>{
             if(schedule[i] === appointmentDate[j].time){
                 continue
             }
-            
+            console.log(schedule[i].time+" this is free time")
             availableSlot.push(schedule[i])
         }
     }
