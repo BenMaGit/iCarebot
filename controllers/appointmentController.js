@@ -19,7 +19,7 @@ const generateAvailableTimeSlot = async (event, date) =>{
         }
     }
     for(let k = 0; k < availableSlot.length; k++){
-        console.log(availableSlot[i] +" Available Time")
+        console.log(availableSlot[k] +" Available Time")
     }
     
 }
