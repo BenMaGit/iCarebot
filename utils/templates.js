@@ -90,7 +90,7 @@ function timeActionTemplate (time){
       "type": "postback",
       "label": time,
       "text": "選擇 "+ time,
-      "data": "選擇時間"+ time
+      "data": "選擇時間 "+ time
     }
     return template
 }
