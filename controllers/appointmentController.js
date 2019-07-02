@@ -17,7 +17,7 @@ const generateAvailableTimeSlot = async (event, date) =>{
         if(bookedSlot.includes(schedule[i])){
             continue
         }
-        console.log(appointmentDate+" Free Slot")
+        console.log(schedule[i]+" Free Slot")
         availableSlot.push(schedule[i])
     }
     
