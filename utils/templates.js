@@ -72,12 +72,7 @@ function appointmentTemplate (){
                     "text": "選擇"+nextNineDays[7],
                     "data": "選擇日期 " + nextNineDays[7]
                   },
-                  {
-                    "type": "postback",
-                    "label": nextNineDays[8],
-                    "text": "選擇"+nextNineDays[8],
-                    "data": "選擇日期 " + nextNineDays[8]
-                  }
+                  
                 ]
             }
           ]
