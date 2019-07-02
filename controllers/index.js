@@ -40,8 +40,55 @@ async function postbackHandler(event){
                 let timeTemplate = await appoitnmentController.generateAvailableTimeSlot(action[1])
                 console.log(JSON.stringify(timeTemplate))
                 console.log("My Carousel Template")
+                let testing = {
+                    "type":"template",
+                    "altText":"this is a carousel template",
+                    "template":{
+                    "type":"carousel",
+                    "actions":[
+                    ],
+                    "columns":[
+                    {
+                    "title":"線上預約",
+                    "text":"選擇下列時間",
+                    "actions":[
+                    {
+                    "type":"postback",
+                    "label":"9:00AM",
+                    "text":"選擇 9:00AM",
+                    "data":"選擇時間 9:00AM"
+                    },
+                    {
+                    "type":"postback",
+                    "label":"11:00AM",
+                    "text":"選擇 11:00AM",
+                    "data":"選擇時間 11:00AM"
+                    },
+                    {
+                    "type":"postback",
+                    "label":"13:00PM",
+                    "text":"選擇 13:00PM",
+                    "data":"選擇時間 13:00PM"
+                    }
+                    ]
+                    },
+                    {
+                    "title":"線上預約",
+                    "text":"選擇下列時間",
+                    "actions":[
+                    {
+                    "type":"postback",
+                    "label":"15:00PM",
+                    "text":"選擇 15:00PM",
+                    "data":"選擇時間 15:00PM"
+                    }
+                    ]
+                    }
+                    ]
+                    }
+                    }
                 appointmentSheet[event.source.userId].date = action[1]
-                autoReply.replyHandler(event, "testing")
+                autoReply.replyHandler(event, testing)
                 break;
         case '選擇時間':
                 console.log('Please confirm action')
