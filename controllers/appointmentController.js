@@ -11,9 +11,9 @@ const generateAvailableTimeSlot = async (event, date) =>{
     console.log(appointmentDate +" appDate")
     for(let i = 0; i < schedule.length; i ++){
         for(let j = 0; j < appointmentDate.length; j++){
-            console.log(appointment[j]+" bookedAppointment")
-            console.log(appointment[j].time+" booked")
-            if(schedule[i] === appointment[j].time){
+            console.log(appointmentDate[j]+" bookedAppointment")
+            console.log(appointmentDate[j].time+" booked")
+            if(schedule[i] === appointmentDate[j].time){
                 continue
             }
             console.log(schedule[i])
