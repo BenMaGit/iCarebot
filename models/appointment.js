@@ -13,7 +13,7 @@ appointmentSchema.statics.checkAvailableTime = function(date, time){
 appointmentSchema.statics.checkExistingAppt = function(userID){
     return this.findOne({'profile.userID':userID})
 }
-appointmentSchema.static.findbyDate = function(date){
+appointmentSchema.statics.findAvailableTime = function(date){
     return this.find({date:date})
 }
 
