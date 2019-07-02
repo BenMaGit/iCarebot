@@ -41,7 +41,7 @@ async function postbackHandler(event){
                 console.log(JSON.stringify(timeTemplate))
                 console.log("My Carousel Template")
                 appointmentSheet[event.source.userId].date = action[1]
-                autoReply.replyHandler(event, timeTemplate)
+                autoReply.replyHandler(event, "testing")
                 break;
         case '選擇時間':
                 console.log('Please confirm action')
