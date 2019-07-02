@@ -45,6 +45,9 @@ async function postbackHandler(event){
                 break;
         case '選擇時間':
                 console.log('Please confirm action')
+                if(action[1] == '-'){
+                    break
+                }
                 let confirmTemplate = templates.confirmTemplate
                 appointmentSheet[event.source.userId].time = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
