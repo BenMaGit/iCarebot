@@ -85,25 +85,24 @@ function appointmentTemplate (){
       }
       return template
 }
-
-const timeActionTemplate = function (time) {
-  let template = {
-    "type": "postback",
-    "label": time,
-    "text": "選擇 "+ time,
-    "data": "選擇時間"+ time
-  }
-  return template
+function timeActionTemplate (time){
+    let template = {
+      "type": "postback",
+      "label": time,
+      "text": "選擇 "+ time,
+      "data": "選擇時間"+ time
+    }
+    return template
 }
-const timeColumnTemplate = function (actionTemplates){
-  let template = {
-    "title": "線上預約",
-    "text": "選擇下列時間",
-    "actions":actionTemplates
-  }
-  return template
+function timeColumnTemplate (actionTemplates){
+    let template = {
+      "title": "線上預約",
+      "text": "選擇下列時間",
+      "actions":actionTemplates
+    }
+    return template
 }
-const timeTemplate = function (columns){
+function timeTemplate (columns){
   let template = {
     "type": "template",
     "altText": "this is a carousel template",
@@ -115,6 +114,7 @@ const timeTemplate = function (columns){
   }
   return template
 }
+
 const confirmTemplate = {
   "type": "template",
   "altText": "this is a buttons template",
