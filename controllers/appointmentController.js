@@ -39,6 +39,9 @@ const generateAvailableTimeSlot = async (date) =>{
         columnArray.push(template.timeColumnTemplate(actionArray))
         console.log(template.timeColumnTemplate(actionArray)+" Column Template")
     }
+    for(var property in template.timeTemplate(columnArray)){
+        console.log(template.timeTemplate(columnArray)[property])
+    }
     return template.timeTemplate(columnArray)
     
 }
