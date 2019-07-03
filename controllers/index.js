@@ -23,7 +23,7 @@ function commandHandler(event){
                         console.log('Look up appointment')
                         appoitnmentController.lookUpAppointment(event)
                         break;
-                case '常見問題':
+                case '客服查詢':
                         console.log('Frequently Asked Question')
                         autoReply.replyHandler(event, templates.timePicker)
                 default:
