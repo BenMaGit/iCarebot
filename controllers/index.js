@@ -1,6 +1,7 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
+const rp = require('request-promise')
 
 /* To differentiate user's appointment time
 using haspMap to store UserID, date and time */
@@ -25,12 +26,26 @@ function commandHandler(event){
                         break;
                 case '客服查詢':
                         console.log('Frequently Asked Question')
-                        autoReply.replyHandler(event, templates.timePicker())
+                        break;
                 default:
-                        /* if(!event.message.text.startsWith('選擇')){
-                            autoReply.replyHandler(event, 'Default Message')
+                        let userID = event.source.userId
+                        let option ={
+                            method: 'POST',
+                            uri: 'https://api.line.me/v2/bot/user/{'+userID+'}/linkToken',
+                            body: {
+                                some: 'payload'
+                            },
+                            headers: {
+                                'Authorization':'Bearer  zr2GguG/HT18L9uoCoQkGoMXx8nVG4zXI4gFnRZEfMw5S1VRL0L8Lg4mwpNWEvZeirwXWMaItTHSCNIPVraMwxA4UCeLBqWJ4nf3G2AawST0rq4sJGA5JycW8CAVmzBQPaBeDUMudsGoGwIqCYtUowdB04t89/1O/w1cDnyilFU='
+                            },
+                            json: true // Automatically stringifies the body to JSON
                         }
-                        break; */
+                        rp(option).then(function (parsedBody){
+                            console.log(parsedBody.linkToken)
+                        }).catch((err)=>{
+                            console.log(err)
+                        })
+                        break;
             }
         break;
     } 
