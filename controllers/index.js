@@ -66,6 +66,7 @@ async function postbackHandler(event){
                 appointmentSheet[event.source.userId].date = ''
                 appointmentSheet[event.source.userId].time = ''
                 autoReply.replyHandler(event, '已結束預約流程')
+                break
     }
 }
 
