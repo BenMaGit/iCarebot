@@ -48,22 +48,27 @@ const confirmAppointment = async (event, date, time) =>{
         await existingAppt.remove()
     }
     let timeSlot = await Appointment.checkAvailableTime(date, time)
-    if(!timeSlot){
-        console.log('Creating Appointment')
-        let appointment = new Appointment({
-            profile: {
-                "Name": "Subject one",
-                "userID": event.source.userId},
-            date: date,
-            time: time
-        })
-        appointment.save().then(()=>{
-            autoReply.replyHandler(event, '預約成功!' )
-    
-        })
+    if(date !== '' && time !==''){
+        if(!timeSlot){
+            console.log('Creating Appointment')
+            let appointment = new Appointment({
+                profile: {
+                    "Name": "Subject one",
+                    "userID": event.source.userId},
+                date: date,
+                time: time
+            })
+            appointment.save().then(()=>{
+                autoReply.replyHandler(event, '預約成功!' )
+        
+            })
+        }else{
+            autoReply.replyHandler(event, '已有人預約這個時段' )
+        }
     }else{
-        autoReply.replyHandler(event, '已有人預約這個時段' )
+        autoReply.replyHandler(event, '請選擇您需要預約的時間' )
     }
+    
 }
 
 const lookUpAppointment = async (event) =>{

@@ -53,14 +53,19 @@ async function postbackHandler(event){
                 let confirmTemplate = templates.confirmTemplate
                 appointmentSheet[event.source.userId].time = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
-                break;
+                break
         case 'confirm':
                 console.log('Confirm')
                 appoitnmentController.confirmAppointment(
                     event, 
                     appointmentSheet[event.source.userId].date, 
                     appointmentSheet[event.source.userId].time )
-                break;
+                break
+        case 'cancel':
+                console.log('Cancel')
+                appointmentSheet[event.source.userId].date = ''
+                appointmentSheet[event.source.userId].time = ''
+                autoReply.replyHandler(event, '已結束預約流程')
     }
 }
 
