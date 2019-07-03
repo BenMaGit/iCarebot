@@ -51,6 +51,7 @@ function commandHandler(event){
 }
 async function postbackHandler(event){
     let action = event.postback.data.split(' ')
+    let userID = event.source.userId
     switch (action[0]){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])
@@ -59,7 +60,7 @@ async function postbackHandler(event){
                     autoReply.replyHandler(event, "該日期時段已滿")
                     break
                 }
-                appointmentSheet[event.source.userId].date = action[1]
+                appointmentSheet[userID].date = action[1]
                 autoReply.replyHandler(event, timeTemplate)
                 break;
         case '選擇時間':
@@ -67,21 +68,23 @@ async function postbackHandler(event){
                 if(action[1] == '-'){
                     break
                 }
-                let confirmTemplate = templates.confirmTemplate
-                appointmentSheet[event.source.userId].time = action[1]
+                let confirmTemplate = templates.confirmTemplate(
+                    appointmentSheet[userID].date,
+                    appointmentSheet[userID].time)
+                appointmentSheet[userID].time = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
                 break
         case 'confirm':
                 console.log('Confirm')
                 appoitnmentController.confirmAppointment(
                     event, 
-                    appointmentSheet[event.source.userId].date, 
-                    appointmentSheet[event.source.userId].time )
+                    appointmentSheet[userID].date, 
+                    appointmentSheet[userID].time )
                 break
         case 'cancel':
                 console.log('Cancel')
-                appointmentSheet[event.source.userId].date = ''
-                appointmentSheet[event.source.userId].time = ''
+                appointmentSheet[userID].date = ''
+                appointmentSheet[userID].time = ''
                 autoReply.replyHandler(event, '已結束預約流程')
                 break
     }

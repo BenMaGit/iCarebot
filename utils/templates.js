@@ -115,30 +115,33 @@ function timeTemplate(columns){
   }
   return template
 }
+function confirmTemplate (date, time) {
 
-const confirmTemplate = {
-  "type": "template",
-  "altText": "this is a buttons template",
-  "template": {
-    "type": "buttons",
-    "actions": [
-      {
-        "type": "postback",
-        "label": "確認",
-        "text": "確認預約",
-        "data": "confirm"
-      },
-      {
-        "type": "postback",
-        "label": "取消",
-        "text": "取消預約",
-        "data": "cancel"
-      }
-    ],
-    "title": "確認預約",
-    "text": "日期"
+  let template = {
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "確認",
+          "data": "confirm"
+        },
+        {
+          "type": "postback",
+          "label": "取消",
+          "data": "cancel"
+        }
+      ],
+      "title": "請確認以下的日期與時間",
+      "text": "您選擇了 "+ date + " " + time + "時段"
+    }
   }
+  return template
+
 }
+
 
 function generateNextWeek(){
     let j = 9
