@@ -98,9 +98,9 @@ function timePicker(){
           "label": "測試選擇時間",
           "data": "Data ",
           "mode": "time",
-          "initial": d,
+          "initial": '09:00',
           "max": "16:00",
-          "min": d
+          "min": '09:00'
         }
       ],
       "title": "常見問題",
