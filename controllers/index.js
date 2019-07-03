@@ -1,5 +1,6 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
+const configs = require('../configs')
 const appoitnmentController = require('./appointmentController')
 const rp = require('request-promise')
 
@@ -27,15 +28,14 @@ function commandHandler(event){
                 case '客服查詢':
                         console.log('Frequently Asked Question')
                         break;
-                default:
+                case 'AccountLink':
                         let userID = event.source.userId
-                        console.log(userID+" HERE")
                         let option ={
                             method: 'POST',
                             uri: 'https://api.line.me/v2/bot/user/'+userID+'/linkToken',
                             body: {},
                             headers: {
-                                'Authorization':'Bearer  zr2GguG/HT18L9uoCoQkGoMXx8nVG4zXI4gFnRZEfMw5S1VRL0L8Lg4mwpNWEvZeirwXWMaItTHSCNIPVraMwxA4UCeLBqWJ4nf3G2AawST0rq4sJGA5JycW8CAVmzBQPaBeDUMudsGoGwIqCYtUowdB04t89/1O/w1cDnyilFU='
+                                'Authorization':'Bearer '+configs.botAccess.channelAccessToken
                             },
                             json: true // Automatically stringifies the body to JSON
                         }
