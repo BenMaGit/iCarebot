@@ -28,6 +28,9 @@ bot.on('postback', function (event) {
 
 const app = express();
 const linebotParser = bot.parser();
+app.get('/test', (req, res)=>{
+    res.json({status:'it works!'})
+})
 app.post('/', linebotParser);
 
 mongoose.connect(configs.mongodb).then(() =>{
