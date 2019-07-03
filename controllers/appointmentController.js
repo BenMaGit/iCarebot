@@ -66,7 +66,7 @@ const confirmAppointment = async (event, date, time) =>{
             autoReply.replyHandler(event, '已有人預約這個時段' )
         }
     }else{
-        autoReply.replyHandler(event, '請選擇您需要預約的時間' )
+        autoReply.replyHandler(event, '請選擇您預約的時間' )
     }
     
 }

@@ -1,4 +1,3 @@
-
 function appointmentTemplate (){
     let nextNineDays = generateNextWeek()
     let template = {
@@ -85,6 +84,31 @@ function appointmentTemplate (){
       }
       return template
 }
+function timePicker(){
+  let d = new Date()
+  d.setHours(9,0)
+  let template = {
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "datetimepicker",
+          "label": "測試選擇時間",
+          "data": "Data ",
+          "mode": "time",
+          "initial": d,
+          "max": "16:00",
+          "min": d
+        }
+      ],
+      "title": "常見問題",
+      "text": "測試選擇時間"
+    }
+  }
+  return template
+}
 function timeActionTemplate (time){
     let template = {
       "type": "postback",
@@ -159,5 +183,6 @@ module.exports = {
     timeTemplate,
     confirmTemplate,
     timeActionTemplate,
-    timeColumnTemplate
+    timeColumnTemplate,
+    timePicker
 }

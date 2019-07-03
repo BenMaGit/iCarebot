@@ -14,15 +14,18 @@ function commandHandler(event){
         case 'text':
             switch (event.message.text){
                 case '線上預約':
-                        console.log("In appointment")
+                        console.log('In appointment')
                         let appointmentTemplate = templates.appointmentTemplate()
                         appointmentSheet[event.source.userId] = new ApptChart()
                         autoReply.replyHandler(event, appointmentTemplate)
                         break;
                 case '預約查詢':
-                        console.log("Look up appointment")
+                        console.log('Look up appointment')
                         appoitnmentController.lookUpAppointment(event)
                         break;
+                case '常見問題':
+                        console.log('Frequently Asked Question')
+                        autoReply.replyHandler(event, templates.timePicker)
                 default:
                         /* if(!event.message.text.startsWith('選擇')){
                             autoReply.replyHandler(event, 'Default Message')
