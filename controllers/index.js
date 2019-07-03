@@ -32,7 +32,7 @@ function commandHandler(event){
                         console.log(userID+" HERE")
                         let option ={
                             method: 'POST',
-                            uri: 'https://api.line.me/v2/bot/user/{'+userID+'}/linkToken',
+                            uri: 'https://api.line.me/v2/bot/user/'+userID+'/linkToken',
                             body: {},
                             headers: {
                                 'Authorization':'Bearer  zr2GguG/HT18L9uoCoQkGoMXx8nVG4zXI4gFnRZEfMw5S1VRL0L8Lg4mwpNWEvZeirwXWMaItTHSCNIPVraMwxA4UCeLBqWJ4nf3G2AawST0rq4sJGA5JycW8CAVmzBQPaBeDUMudsGoGwIqCYtUowdB04t89/1O/w1cDnyilFU='
