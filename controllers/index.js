@@ -25,7 +25,7 @@ function commandHandler(event){
                         break;
                 case '客服查詢':
                         console.log('Frequently Asked Question')
-                        autoReply.replyHandler(event, templates.timePicker)
+                        autoReply.replyHandler(event, templates.timePicker())
                 default:
                         /* if(!event.message.text.startsWith('選擇')){
                             autoReply.replyHandler(event, 'Default Message')
