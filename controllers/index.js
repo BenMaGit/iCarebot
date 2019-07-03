@@ -68,10 +68,10 @@ async function postbackHandler(event){
                 if(action[1] == '-'){
                     break
                 }
+                appointmentSheet[userID].time = action[1]
                 let confirmTemplate = templates.confirmTemplate(
                     appointmentSheet[userID].date,
                     appointmentSheet[userID].time)
-                appointmentSheet[userID].time = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
                 break
         case 'confirm':
