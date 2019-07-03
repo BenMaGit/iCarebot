@@ -161,5 +161,4 @@ module.exports = {
     confirmTemplate,
     timeActionTemplate,
     timeColumnTemplate,
-    timePicker
 }
