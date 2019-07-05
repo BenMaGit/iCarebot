@@ -29,7 +29,8 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case 'AccountLink':
-                        let userID = event.source.userId
+                        autoReply.replyHandler(event, 'http://35.194.223.224/register?linkToke='+event.source.userId)
+             /*            let userID = event.source.userId
                         let option ={
                             method: 'POST',
                             uri: 'https://api.line.me/v2/bot/user/'+userID+'/linkToken',
@@ -43,7 +44,7 @@ function commandHandler(event){
                             console.log(parsedBody.linkToken)
                         }).catch((err)=>{
                             console.log(err)
-                        })
+                        }) */
                         break;
             }
         break;
