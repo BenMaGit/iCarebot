@@ -45,7 +45,7 @@ const generateAvailableTimeSlot = async (date) =>{
 const confirmAppointment = async (event, date, time) =>{
     let existingAppt = await Appointment.checkExistingAppt(event.source.userId)
     //無預約時間 按了取消鍵會清空
-    if(date !== '' && time !==''){
+    if(date === '' || time ===''){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
         return
     }
