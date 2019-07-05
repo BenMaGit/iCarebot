@@ -143,6 +143,7 @@ function confirmTemplate (date, time) {
 }
 
 
+
 function generateNextWeek(){
     let j = 9
     let dateArray = []
