@@ -29,7 +29,7 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case 'AccountLink':
-                        autoReply.replyHandler(event, 'http://35.194.223.224/register?linkToke='+event.source.userId)
+                        autoReply.replyHandler(event, 'http://35.194.223.224/register?linkToken='+event.source.userId)
              /*            let userID = event.source.userId
                         let option ={
                             method: 'POST',
