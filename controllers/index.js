@@ -80,6 +80,10 @@ async function postbackHandler(event){
                 break
         case 'confirm':
                 console.log('Confirm')
+                if(!appointmentSheet[userID]){
+                    autoReply.replyHandler(event, '請重新選擇預約時間')
+                    break
+                }
                 appoitnmentController.confirmAppointment(
                     event, 
                     appointmentSheet[userID].date, 
