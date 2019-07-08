@@ -84,7 +84,7 @@ const confirmAppointment = async (event, date, time) =>{
 }
 
 const lookUpAppointment = async (event) =>{
-    let appointment = await Appointment.findByID(event.source.userId)
+    let appointment = await Appointment.findByID(event.source.userID)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
@@ -93,7 +93,7 @@ const lookUpAppointment = async (event) =>{
 }
 
 const startSession = async(event) =>{
-    let appointment = await Appointment.findByID(event.source.userId)
+    let appointment = await Appointment.findByID(event.source.userID)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
         return
@@ -108,7 +108,7 @@ const startSession = async(event) =>{
         return
     }
     if(!inTime(sessionStart, sessionEnd)){
-        autoReply.replyHandler(event, '您預約的時段不是現在+\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        autoReply.replyHandler(event, '您預約的時段不是現在\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
         return
     }
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
