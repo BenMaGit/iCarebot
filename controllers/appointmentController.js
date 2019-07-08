@@ -47,7 +47,7 @@ const confirmAppointment = async (event, date, time) =>{
     let profile = await Profile.lookUp(userId)
     //資料庫沒有個案資料
     if(!profile){
-        autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId)
+        autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId+"&date="+date+"&time="+time)
         return
     }
     let existingAppt = await Appointment.checkExistingAppt(userId)

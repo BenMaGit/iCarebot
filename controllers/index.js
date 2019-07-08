@@ -25,7 +25,7 @@ function commandHandler(event){
                         console.log('Look up appointment')
                         appoitnmentController.lookUpAppointment(event)
                         break;
-                case '客服查詢':
+                case '常見問題':
                         console.log('Frequently Asked Question')
                         break;
                 case 'AccountLink':
