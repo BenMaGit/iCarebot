@@ -103,7 +103,7 @@ const startSession = async(event) =>{
     let sessionStart = apptTime * 60 + 0
     let sessionEnd = (apptTime + 1) * 60 + 0
     if(!isToday(apptDate)){
-        autoReply.replyHandler(event, '您今天沒有任何預約的時段+\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        autoReply.replyHandler(event, '您今天沒有任何預約的時段\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
         return
     }
     if(!inTime(sessionStart, sessionEnd)){
@@ -119,7 +119,7 @@ const isToday = (someDate) => {
       someDate.getMonth() == today.getMonth() &&
       someDate.getFullYear() == today.getFullYear()
   }
-const  inTime = (start, end) =>{
+const inTime = (start, end) =>{
 var now = new Date();
 var time = now.getHours() * 60 + now.getMinutes();
 return time >= start && time < end;
