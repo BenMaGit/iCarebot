@@ -45,17 +45,14 @@ const generateAvailableTimeSlot = async (date) =>{
 const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
-    //資料庫沒有個案資料
-    if(!profile){
-        autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId+"&date="+date+"&time="+time)
-        return
-    }
+   
     let existingAppt = await Appointment.checkExistingAppt(userId)
     //無預約時間
     if(date === '' || time ===''){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
         return
     }
+    
     //移除之前的預約記錄
     if(existingAppt){
         await existingAppt.remove()
@@ -64,6 +61,11 @@ const confirmAppointment = async (event, date, time) =>{
     let timeSlot = await Appointment.checkAvailableTime(date, time)
     
     if(!timeSlot){
+        //檢查資料庫有沒有個案資料
+        if(!profile){
+            autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId+"&date="+encodeURIComponent(date)+"&time="+encodeURIComponent(time))
+            return
+        }
         console.log('Creating Appointment')
         let appointment = new Appointment({
             profile: profile,
