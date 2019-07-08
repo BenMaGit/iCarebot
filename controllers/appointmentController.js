@@ -100,9 +100,11 @@ const startSession = async(event) =>{
     }
     let apptDate = new Date(appointment.date)
     let apptTime = appointment.time.split(':')[0]
-    console.log(apptTime + "Appointment Time")
+    console.log(apptTime + " Appointment Time")
     let sessionStart = apptTime * 60 + 0
+    console.log(sessionStart + " Start Time")
     let sessionEnd = (apptTime + 1) * 60 + 0
+    console.log(sessionEnd+ " End Time")
     if(!isToday(apptDate)){
         autoReply.replyHandler(event, '您今天沒有任何預約的時段\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
         return
@@ -123,6 +125,7 @@ const isToday = (someDate) => {
 function inTime(start, end) {
     var now = new Date();
     var time = now.getHours() * 60 + now.getMinutes();
+    console.log(time + " NOW")
     return time >= start && time < end;
 }
 
