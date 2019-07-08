@@ -48,7 +48,7 @@ const confirmAppointment = async (event, date, time) =>{
    
     let existingAppt = await Appointment.findByID(userId)
     //無預約時間
-    if(date === '' || time ===''){
+    if(!date|| !time){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
         return
     }
