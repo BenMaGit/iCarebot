@@ -103,7 +103,7 @@ const startSession = async(event) =>{
     let sessionStart = apptTime * 60
     let sessionEnd = (apptTime + 1) * 60
     if(!isToday(apptDate) || !inTime(sessionStart, sessionEnd)){
-        autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
         return
     }
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
