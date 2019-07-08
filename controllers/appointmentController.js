@@ -46,7 +46,7 @@ const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
    
-    let existingAppt = await Appointment.checkExistingAppt(userId)
+    let existingAppt = await Appointment.findByID(userId)
     //無預約時間
     if(date === '' || time ===''){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
@@ -100,17 +100,10 @@ const startSession = async(event) =>{
     }
     let apptDate = new Date(appointment.date)
     let apptTime = parseInt(appointment.time.split(':')[0], 10)
-    console.log(apptTime + " Appointment Time")
     let sessionStart = apptTime * 60
-    console.log(sessionStart + " Start Time")
     let sessionEnd = (apptTime + 1) * 60
-    console.log(sessionEnd + " End Time")
-    if(!isToday(apptDate)){
-        autoReply.replyHandler(event, '您今天沒有任何預約的時段\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
-        return
-    }
-    if(!inTime(sessionStart, sessionEnd)){
-        autoReply.replyHandler(event, '您預約的時段不是現在\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+    if(!isToday(apptDate) || !inTime(sessionStart, sessionEnd)){
+        autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
         return
     }
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
