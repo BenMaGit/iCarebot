@@ -84,7 +84,7 @@ const confirmAppointment = async (event, date, time) =>{
 }
 
 const lookUpAppointment = async (event) =>{
-    let appointment = await Appointment.findByID(event.source.userID)
+    let appointment = await Appointment.findByID(event.source.userId)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
@@ -93,7 +93,7 @@ const lookUpAppointment = async (event) =>{
 }
 
 const startSession = async(event) =>{
-    let appointment = await Appointment.findByID(event.source.userID)
+    let appointment = await Appointment.findByID(event.source.userId)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
         return
