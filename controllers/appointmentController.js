@@ -120,10 +120,10 @@ const isToday = (someDate) => {
       someDate.getMonth() == today.getMonth() &&
       someDate.getFullYear() == today.getFullYear()
   }
-const inTime = (start, end) =>{
-var now = new Date();
-var time = now.getHours() * 60 + now.getMinutes();
-return time >= start && time < end;
+function inTime(start, end) {
+    var now = new Date();
+    var time = now.getHours() * 60 + now.getMinutes();
+    return time >= start && time < end;
 }
 
 
