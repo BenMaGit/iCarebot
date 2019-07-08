@@ -99,11 +99,10 @@ const startSession = async(event) =>{
         return
     }
     let apptDate = new Date(appointment.date)
-    let apptTime = appointment.time.split(':')[0]
+    let apptTime = parseInt(appointment.time.split(':')[0], 10)
     console.log(apptTime + " Appointment Time")
     let sessionStart = apptTime * 60
     console.log(sessionStart + " Start Time")
-    console.log(apptTime+1) + "ENDD"
     let sessionEnd = (apptTime + 1) * 60
     console.log(sessionEnd + " End Time")
     if(!isToday(apptDate)){
