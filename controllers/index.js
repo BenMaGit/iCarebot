@@ -30,6 +30,8 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
+                        appoitnmentController.startSession(event)
+                        
                        
              /*            let userID = event.source.userId
                         let option ={

@@ -84,13 +84,45 @@ const confirmAppointment = async (event, date, time) =>{
 }
 
 const lookUpAppointment = async (event) =>{
-    let appointment = await Appointment.checkExistingAppt(event.source.userId)
+    let appointment = await Appointment.findByID(event.source.userId)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
         autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+    } 
+}
+
+const startSession = async(event) =>{
+    let appointment = await Appointment.findByID(event.source.userId)
+    if(!appointment){
+        autoReply.replyHandler(event, '您沒有任何預約')
+        return
     }
-   
+    let apptDate = new Date(appointment.date)
+    let apptTime = appointment.time.split(':')[0]
+    let sessionStart = apptTime * 60 + 0
+    let sessionEnd = (apptTime + 1) * 60 + 0
+    if(!isToday(apptDate)){
+        autoReply.replyHandler(event, '您今天沒有任何預約的時段+\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        return
+    }
+    if(!inTime(sessionStart, sessionEnd)){
+        autoReply.replyHandler(event, '您預約的時段不是現在+\n'+ '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        return
+    }
+    autoReply.replyHandler(event, '已幫您與諮商師進行連接')
+}
+
+const isToday = (someDate) => {
+    const today = new Date()
+    return someDate.getDate() == today.getDate() &&
+      someDate.getMonth() == today.getMonth() &&
+      someDate.getFullYear() == today.getFullYear()
+  }
+const  inTime = (start, end) =>{
+var now = new Date();
+var time = now.getHours() * 60 + now.getMinutes();
+return time >= start && time < end;
 }
 
 
@@ -98,6 +130,7 @@ const lookUpAppointment = async (event) =>{
 module.exports = {
     confirmAppointment,
     lookUpAppointment,
-    generateAvailableTimeSlot
+    generateAvailableTimeSlot,
+    startSession
 
 }
