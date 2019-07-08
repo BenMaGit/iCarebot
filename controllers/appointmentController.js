@@ -93,7 +93,6 @@ function inTime(start, end) {
 module.exports = {
     confirmAppointment,
     lookUpAppointment,
-    generateAvailableTimeSlot,
     startSession
 
 }
