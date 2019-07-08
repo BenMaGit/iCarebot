@@ -85,11 +85,7 @@ const confirmAppointment = async (event, date, time) =>{
 
 const lookUpAppointment = async (event) =>{
     let appointment = await Appointment.checkExistingAppt(event.source.userId)
-    if(!appointment){
-        autoReply.replyHandler(event, '您沒有任何預約')
-    }else{
-        autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
-    }
+    return appointment
 }
 
 

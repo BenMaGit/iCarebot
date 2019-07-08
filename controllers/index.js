@@ -23,13 +23,18 @@ function commandHandler(event){
                         break;
                 case '預約查詢':
                         console.log('Look up appointment')
-                        appoitnmentController.lookUpAppointment(event)
+                        let appointment = appoitnmentController.lookUpAppointment(event)
+                        if(!appointment){
+                            autoReply.replyHandler(event, '您沒有任何預約')
+                        }else{
+                            autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+                        }
                         break;
                 case '常見問題':
                         console.log('Frequently Asked Question')
                         break;
-                case 'AccountLink':
-                        autoReply.replyHandler(event, 'http://35.194.223.224/register?linkToken='+event.source.userId)
+                case '開始諮商':
+                       
              /*            let userID = event.source.userId
                         let option ={
                             method: 'POST',
