@@ -59,7 +59,7 @@ async function postbackHandler(event){
     switch (action[0]){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])
-                let timeTemplate = await appoitnmentController.generateAvailableTimeSlot(action[1])
+                let timeTemplate = await templates.generateAvailableTimeSlot(action[1])
                 if(!timeTemplate){
                     autoReply.replyHandler(event, "該日期時段已滿")
                     break

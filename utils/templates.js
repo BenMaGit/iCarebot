@@ -1,3 +1,5 @@
+const Appointment = require('../models/appointment')
+
 function appointmentTemplate (){
     let nextNineDays = generateNextWeek()
     let template = {
@@ -84,7 +86,44 @@ function appointmentTemplate (){
       }
       return template
 }
-
+const generateAvailableTimeSlot = async (date) =>{
+  let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
+  let bookedSlot =[]
+  let actionArray = []
+  let columnArray = []
+  let appointmentDate = await Appointment.find().byDate(date)
+  for(let j = 0; j < appointmentDate.length; j++){
+      bookedSlot.push(appointmentDate[j].time)
+  }
+  //如果時段已滿
+  if(bookedSlot.length == 6){
+      return
+  }
+  for(let i = 0; i < schedule.length; i ++){
+      if(bookedSlot.includes(schedule[i])){
+          continue
+      }
+      let actionLength = actionArray.push(timeActionTemplate(schedule[i]))
+      //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
+      //一個 actionTemplate 只會有三個actions
+      if(actionLength == 3){
+          columnArray.push(timeColumnTemplate(actionArray))
+          console.log(JSON.stringify(timeColumnTemplate(actionArray)))
+          actionArray = []
+      }
+  }
+  //補滿actions 
+  while(actionArray.length < 3 && actionArray.length != 0){
+      actionArray.push(timeActionTemplate('-'))
+  }
+  //console.log(JSON.stringify(actionArray))
+  //需要一個新的column 
+  if(actionArray.length == 3){
+      columnArray.push(timeColumnTemplate(actionArray))
+  }
+  let carouselTemplate = new timeTemplate(columnArray)
+  return carouselTemplate
+}
 
 function timeActionTemplate (time){
     let template = {
@@ -165,4 +204,5 @@ module.exports = {
     confirmTemplate,
     timeActionTemplate,
     timeColumnTemplate,
+    generateAvailableTimeSlot
 }

@@ -4,44 +4,7 @@ const autoReply = require('../utils/replyHandler')
 const template = require('../utils/templates')
 
 
-const generateAvailableTimeSlot = async (date) =>{
-    let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
-    let bookedSlot =[]
-    let actionArray = []
-    let columnArray = []
-    let appointmentDate = await Appointment.find().byDate(date)
-    for(let j = 0; j < appointmentDate.length; j++){
-        bookedSlot.push(appointmentDate[j].time)
-    }
-    //如果時段已滿
-    if(bookedSlot.length == 6){
-        return
-    }
-    for(let i = 0; i < schedule.length; i ++){
-        if(bookedSlot.includes(schedule[i])){
-            continue
-        }
-        let actionLength = actionArray.push(template.timeActionTemplate(schedule[i]))
-        //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
-        //一個 actionTemplate 只會有三個actions
-        if(actionLength == 3){
-            columnArray.push(template.timeColumnTemplate(actionArray))
-            console.log(JSON.stringify(template.timeColumnTemplate(actionArray)))
-            actionArray = []
-        }
-    }
-    //補滿actions 
-    while(actionArray.length < 3 && actionArray.length != 0){
-        actionArray.push(template.timeActionTemplate('-'))
-    }
-    //console.log(JSON.stringify(actionArray))
-    //需要一個新的column 
-    if(actionArray.length == 3){
-        columnArray.push(template.timeColumnTemplate(actionArray))
-    }
-    let carouselTemplate = new template.timeTemplate(columnArray)
-    return carouselTemplate
-}
+
 const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
@@ -109,12 +72,15 @@ const startSession = async(event) =>{
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
 }
 
+
+//check date
 const isToday = (someDate) => {
     const today = new Date()
     return someDate.getDate() == today.getDate() &&
       someDate.getMonth() == today.getMonth() &&
       someDate.getFullYear() == today.getFullYear()
-  }
+}
+//check time
 function inTime(start, end) {
     var now = new Date();
     var time = now.getHours() * 60 + now.getMinutes();
