@@ -56,7 +56,6 @@ const lookUpAppointment = async (event) =>{
 
 const startSession = async(event) =>{
     let appointment = await Appointment.findByID(event.source.userId)
-    let userId
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
         return

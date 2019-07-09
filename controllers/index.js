@@ -30,7 +30,9 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        userId = appoitnmentController.startSession(event)
+                        appoitnmentController.startSession(event).then(userId =>{
+                            userId = userId
+                        })
                         console.log(userId + '開始諮商')
                         break;
                 case '結束諮商':
