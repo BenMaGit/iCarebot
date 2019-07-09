@@ -11,7 +11,7 @@ function ApptChart(){
 }
 var appointmentSheet = {}
 var userId;
-function commandHandler(event){
+async function commandHandler(event){
     switch(event.message.type){
         case 'text':
             switch (event.message.text){
@@ -30,9 +30,7 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        appoitnmentController.startSession(event).then(userId =>{
-                            userId = userId
-                        })
+                        userId = await appoitnmentController.startSession(event)
                         console.log(userId + '開始諮商')
                         break;
                 case '結束諮商':
