@@ -68,8 +68,9 @@ const startSession = async(event) =>{
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
         return
     }
+    let userId = event.source.userId
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
-    return event.source.userId
+    return userId
 }
 
 
