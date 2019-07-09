@@ -1,7 +1,6 @@
 const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
 const autoReply = require('../utils/replyHandler')
-const template = require('../utils/templates')
 
 
 

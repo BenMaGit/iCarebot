@@ -10,7 +10,7 @@ function ApptChart(){
 
 }
 var appointmentSheet = {}
-
+var userId;
 function commandHandler(event){
     switch(event.message.type){
         case 'text':
@@ -30,27 +30,19 @@ function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        appoitnmentController.startSession(event)
-                        
-                       
-             /*            let userID = event.source.userId
-                        let option ={
-                            method: 'POST',
-                            uri: 'https://api.line.me/v2/bot/user/'+userID+'/linkToken',
-                            body: {},
-                            headers: {
-                                'Authorization':'Bearer '+configs.botAccess.channelAccessToken
-                            },
-                            json: true // Automatically stringifies the body to JSON
-                        }
-                        rp(option).then(function (parsedBody){
-                            console.log(parsedBody.linkToken)
-                        }).catch((err)=>{
-                            console.log(err)
-                        }) */
+                        userId = appoitnmentController.startSession(event)
+                        console.log(userId + '開始諮商')
+                        break;
+                case '結束諮商':
+                        userId = null
+                        console.log(userId + '結束諮商')
                         break;
             }
         break;
+    }
+    if(userId){
+        console.log(userId)
+        autoReply.destinedMessage(event.message.text, userId)
     } 
 }
 async function postbackHandler(event){

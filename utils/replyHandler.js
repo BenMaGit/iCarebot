@@ -1,9 +1,11 @@
+const linebot = require('linebot');
+const bot = linebot(configs.botAccess);
 
 function replyHandler(event, msg){
     return event.reply(msg)
 }
 
-function destinedMessage(event, msg, userID){
+function destinedMessage(msg, userID){
     bot.push(userID, msg).then(function (data) {
 
     }).catch(function (error) {
@@ -11,5 +13,6 @@ function destinedMessage(event, msg, userID){
     });
 }
 module.exports = {
-    replyHandler  
+    replyHandler,
+    destinedMessage
 }
