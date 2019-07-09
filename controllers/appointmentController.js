@@ -56,9 +56,10 @@ const lookUpAppointment = async (event) =>{
 
 const startSession = async(event) =>{
     let appointment = await Appointment.findByID(event.source.userId)
+    let userId
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
-        return false
+        return
     }
     let apptDate = new Date(appointment.date)
     let apptTime = parseInt(appointment.time.split(':')[0], 10)
@@ -66,11 +67,11 @@ const startSession = async(event) =>{
     let sessionEnd = (apptTime + 1) * 60
     if(!isToday(apptDate) || !inTime(sessionStart, sessionEnd)){
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
-        return false
+        return
     }
-    
+    userId = event.source.userId
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
-    return true
+    return userId
 }
 
 
