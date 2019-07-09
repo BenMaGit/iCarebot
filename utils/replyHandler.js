@@ -1,3 +1,4 @@
+const configs = require('../configs')
 const linebot = require('linebot');
 const bot = linebot(configs.botAccess);
 

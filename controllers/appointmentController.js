@@ -69,6 +69,7 @@ const startSession = async(event) =>{
         return
     }
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
+    return event
 }
 
 
