@@ -56,6 +56,7 @@ const lookUpAppointment = async (event) =>{
 
 const startSession = async(event) =>{
     let appointment = await Appointment.findByID(event.source.userId)
+    let userId
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
         return
@@ -68,7 +69,7 @@ const startSession = async(event) =>{
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
         return
     }
-    let userId = event.source.userId
+    userId = event.source.userId
     autoReply.replyHandler(event, '已幫您與諮商師進行連接')
     return userId
 }
