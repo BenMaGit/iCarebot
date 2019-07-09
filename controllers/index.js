@@ -24,7 +24,6 @@ async function commandHandler(event){
                 case '預約查詢':
                         console.log('Look up appointment')
                         appoitnmentController.lookUpAppointment(event)
-            
                         break;
                 case '常見問題':
                         console.log('Frequently Asked Question')
@@ -42,6 +41,7 @@ async function commandHandler(event){
     }
     if(userId === event.source.userId){
         console.log(userId)
+        //TODO Server API to send Message to web chatroom
         autoReply.destinedMessage(event.message.text, userId)
     } 
 }
