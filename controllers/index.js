@@ -42,7 +42,7 @@ async function commandHandler(event){
     if(userId === event.source.userId){
         console.log(userId)
         //TODO Server API to send Message to web chatroom
-        autoReply.destinedMessage(event.message.text, userId)
+        autoReply.replyHandler(event, "開始諮商")
     } 
 }
 async function postbackHandler(event){
