@@ -10,7 +10,7 @@ function ApptChart(){
 
 }
 var appointmentSheet = {}
-var userId;
+var inSession;
 async function commandHandler(event){
     switch(event.message.type){
         case 'text':
@@ -30,19 +30,19 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        userId = await appoitnmentController.startSession(event)
-                        console.log(userId + '開始諮商')
+                    inSession = await appoitnmentController.startSession(event)
+                        console.log(inSession + ' 開始諮商')
                         break;
                 case '結束諮商':
-                        userId = null
-                        console.log(userId + '結束諮商')
+                    inSession = false
+                        console.log(inSession + ' 結束諮商')
                         break;
             }
         break;
     }
-    if(userId){
-        console.log(userId)
-        autoReply.destinedMessage(event.message.text, userId)
+    if(inSession){
+        console.log(inSession + event.source.userId)
+        autoReply.destinedMessage(event.message.text, event.source.userId)
     } 
 }
 async function postbackHandler(event){
