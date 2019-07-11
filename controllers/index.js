@@ -36,9 +36,12 @@ async function commandHandler(event){
                 case '結束諮商':
                         profile = null
                         console.log(profile.userID + ' 結束諮商')
-                        return
+                        break
             }
         break;
+    }
+    if(!profile){
+        return
     }
     if(profile.userID === event.source.userId){
         console.log(profile.userID)
