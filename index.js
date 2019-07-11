@@ -31,7 +31,7 @@ mongoose.connect(configs.mongodb).then(() =>{
     });
 })
 
-const socket = require('socket.io-client')('http://35.194.223.224:3000')
+const socket = require('socket.io-client')('http://35.194.253.53:3000')
 socket.on('connect', function(){
     console.log("Successfuly connected to GCP")
 })
