@@ -11,7 +11,7 @@ function ApptChart(){
 
 }
 var appointmentSheet = {}
-var userId;
+var profile;
 async function commandHandler(event){
     switch(event.message.type){
         case 'text':
@@ -34,7 +34,7 @@ async function commandHandler(event){
                         console.log(profile.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
-                        userId = null
+                        profile = null
                         console.log(profile.userID + ' 結束諮商')
                         break;
             }
