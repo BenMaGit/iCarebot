@@ -49,7 +49,7 @@ async function commandHandler(event){
             body: {
                 name : profile.name,
                 userId : profile.userID,
-                message: event.source.text
+                message: event.message.text
             },
             json: true 
         };
