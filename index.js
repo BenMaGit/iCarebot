@@ -7,19 +7,10 @@ const configs = require('./configs')
 const bot = linebot(configs.botAccess);
 
 
+// linebot listening event
 bot.on('message', function (event) {
     console.log(event)
     controllers.commandHandler(event)
-   /*  if(event.message.type === 'text'){
-        replyHandler.autoReplyMessage(event, "Default Message")
-    } */
-    
-   /*  bot.push('U409fc59adb88b8b4c961b45674ce6ca1', event.message.text).then(function (data) {
-    }).catch(function (error) {
-    });
-        event.reply(event.message.text).then(function (data) {
-    }).catch(function (error) {
-    }); */
   });
 bot.on('postback', function (event) {
     controllers.postbackHandler(event)
@@ -28,9 +19,7 @@ bot.on('postback', function (event) {
 
 const app = express();
 const linebotParser = bot.parser();
-app.get('/test', (req, res)=>{
-    res.json({status:'it works!'})
-})
+
 app.post('/', linebotParser);
 
 mongoose.connect(configs.mongodb).then(() =>{
@@ -40,6 +29,14 @@ mongoose.connect(configs.mongodb).then(() =>{
     
         
     });
+})
+
+const socket = require('socket.io-client')('http://35.194.223.224:3000')
+socket.on('connect', function(){
+    console.log("Successfuly connected to GCP")
+})
+socket.on('webSent', (obj)=>{
+    bot.push(obj.userId, obj.message)
 })
 
 
