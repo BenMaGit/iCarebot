@@ -30,23 +30,25 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        userId = await appoitnmentController.startSession(event)
-                        console.log(userId + ' 開始諮商')
+                        profile = await appoitnmentController.startSession(event)
+                        console.log(profile.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
                         userId = null
-                        console.log(userId + ' 結束諮商')
+                        console.log(profile.userID + ' 結束諮商')
                         break;
             }
         break;
     }
-    if(userId === event.source.userId){
-        console.log(userId)
+    if(profile.userID === event.source.userId){
+        console.log(profile.userID)
         //TODO Server API to send Message to web chatroom
         var options = {
             method: 'POST',
-            uri: 'http://127.0.0.1:3000/lineSend',
+            uri: 'http://35.194.253.53:3000/lineSend',
             body: {
+                name : profile.name,
+                userId : profile.userID,
                 message: event.source.text
             },
             json: true 
@@ -57,7 +59,6 @@ async function commandHandler(event){
         .catch(function (err) {
             // POST failed...
         });
-        autoReply.replyHandler(event, "開始諮商")
     } 
 }
 async function postbackHandler(event){
