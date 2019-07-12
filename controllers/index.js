@@ -39,9 +39,12 @@ async function commandHandler(event){
             }
         break;
     }
+    if(!profile){
+        return
+    }
     if(profile.userID === event.source.userId){
         console.log(profile.userID)
-        socket.socket.emit('lineSent', event.message.text)
+        socket.emit('lineSent', event.message.text)
         //TODO Server API to send Message to web chatroom
 /*         var options = {
             method: 'POST',
