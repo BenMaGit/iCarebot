@@ -67,6 +67,9 @@ async function commandHandler(event){
 async function postbackHandler(event){
     let action = event.postback.data.split(' ')
     let userID = event.source.userId
+    if(!appointmentSheet[userID]){
+        autoReply.replyHandler(event, '請重新開始預約流程')
+    }
     switch (action[0]){
         case '選擇日期':
                 console.log('Pick a time on ' + action[1])

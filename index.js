@@ -44,7 +44,7 @@ socket.on('webSent', (obj)=>{
     bot.push(obj.userId, obj.message)
 })
 
-module.exports = socket
+
 
 
 

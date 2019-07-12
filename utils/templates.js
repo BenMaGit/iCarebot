@@ -96,7 +96,7 @@ const generateAvailableTimeSlot = async (date) =>{
       bookedSlot.push(appointmentDate[j].time)
   }
   //如果時段已滿
-  if(bookedSlot.length == 6){
+  if(bookedSlot.length == 5){
       return
   }
   for(let i = 0; i < schedule.length; i ++){
