@@ -86,7 +86,7 @@ const isToday = (someDate) => {
 function inTime(start, end) {
     var now = new Date();
     var time = now.getHours() * 60 + now.getMinutes();
-    console.log(time + " NOW")
+    console.log("Check Time " + time + " NOW")
     return time >= start && time < end;
 }
 

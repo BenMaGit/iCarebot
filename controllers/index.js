@@ -35,18 +35,15 @@ async function commandHandler(event){
                         break;
                 case '結束諮商':
                         profile = null
-                        console.log(profile.userID + ' 結束諮商')
-                        break
+                        return;
             }
         break;
-    }
-    if(!profile){
-        return
     }
     if(profile.userID === event.source.userId){
         console.log(profile.userID)
         //TODO Server API to send Message to web chatroom
-        var options = {
+        socket.emit('lineSent', event.message.text)
+        /* var options = {
             method: 'POST',
             uri: 'http://35.194.253.53:3000/lineSend',
             body: {
@@ -56,12 +53,13 @@ async function commandHandler(event){
             },
             json: true 
         };
-        rp(options).then(function (parsedBody) {
+        rp(options).then(function (res) {
             // POST succeeded...
+            console.log(res.msg)
         })
         .catch(function (err) {
             // POST failed...
-        });
+        }); */
     } 
 }
 async function postbackHandler(event){
