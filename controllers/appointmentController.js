@@ -15,7 +15,7 @@ const confirmAppointment = async (event, date, time) =>{
     }
     //預約以前的時間
    
-    if(isToday(new Date(date)) && isPassedTime(parseInt(time.split(':')[0], 10) * 60) || isPassed(date)){
+    if(isToday(new Date(date)) && isPassedTime(parseInt(time.split(':')[0], 10) * 60) || isPassed(new Date(date))){
         console.log("預約時間不符")
         autoReply.replyHandler(event, '請重新選擇您預約的時間' )
         return
