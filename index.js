@@ -33,8 +33,13 @@ mongoose.connect(configs.mongodb).then(() =>{
 
 const socket = require('socket.io-client')('http://35.194.253.53:3000')
 socket.on('connect', function(){
+    socket.emit('lineSent', 'Tesint to see if it works')
     console.log("Successfuly connected to GCP")
 })
+socket.on('lineSent', (msg)=>{
+    console.log(msg)
+})
+
 socket.on('webSent', (obj)=>{
     bot.push(obj.userId, obj.message)
 })
