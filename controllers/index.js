@@ -3,6 +3,7 @@ const templates = require('../utils/templates')
 const configs = require('../configs')
 const appoitnmentController = require('./appointmentController')
 const rp = require('request-promise')
+const socket = require('../index')
 
 /* To differentiate user's appointment time
 using haspMap to store UserID, date and time */
@@ -40,10 +41,9 @@ async function commandHandler(event){
     }
     if(profile.userID === event.source.userId){
         console.log(profile.userID)
+        socket.socket.emit('lineSent', event.message.text)
         //TODO Server API to send Message to web chatroom
-        const socket = require('socket.io-client')('http://35.194.223.224:3000')
-        socket.emit('lineSent', event.message.text)
-        /* var options = {
+/*         var options = {
             method: 'POST',
             uri: 'http://35.194.253.53:3000/lineSend',
             body: {
