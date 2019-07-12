@@ -79,9 +79,32 @@ function appointmentTemplate (){
                     "text": "選擇"+nextNineDays[8],
                     "data": "選擇日期 " + nextNineDays[8]
                   },
-                  
                 ]
             },
+            {
+              "title": "線上預約",
+              "text": "選擇下列日期 \n一次只能預約一個時段\n原有預約記錄會被刪除",
+              "actions": [
+                {
+                  "type": "postback",
+                  "label": nextNineDays[9],
+                  "text": "選擇"+nextNineDays[9],
+                  "data": "選擇日期 " + nextNineDays[9]
+                },
+                {
+                  "type": "postback",
+                  "label": nextNineDays[10],
+                  "text": "選擇"+nextNineDays[10],
+                  "data": "選擇日期 " + nextNineDays[10]
+                },
+                {
+                  "type": "postback",
+                  "label": nextNineDays[11],
+                  "text": "選擇"+nextNineDays[11],
+                  "data": "選擇日期 " + nextNineDays[11]
+                },
+              ]
+          }
           ]
         }
       }
@@ -185,7 +208,7 @@ function confirmTemplate (date, time) {
 
 
 function generateNextWeek(){
-    let j = 10
+    let j = 12
     let dateArray = []
     let today = new Date()
     dateArray.push(today.toLocaleDateString())
