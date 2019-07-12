@@ -35,7 +35,9 @@ async function commandHandler(event){
                             break
                         }
                         inSession = profile
+                        //30秒提醒結束, 測試
                         setTimeout(reminder, 1000 * 30)
+                        //一分鐘結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, 1000 * 60)
                         console.log(inSession.userID + ' 開始諮商')
                         break;
@@ -128,10 +130,12 @@ async function postbackHandler(event){
 
 function endSession () {
     autoReply.destinedMessage('您的諮商時間已結束, 謝謝', inSession.userID)
+    socket.emit('endSessionNotice', inSession)
     inSession = null
 }
 
 function reminder(){
+    socket.emit('endSessionReminder', '諮商時間還有十分鐘')
     autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
 }
 
