@@ -31,6 +31,7 @@ async function commandHandler(event){
                         break;
                 case '開始諮商':
                         profile = await appoitnmentController.startSession(event)
+                        setTimeout(endSession, 60 * 60)
                         console.log(profile.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
@@ -118,6 +119,10 @@ async function postbackHandler(event){
                 autoReply.replyHandler(event, '已結束預約流程')
                 break
     }
+}
+
+function endSession () {
+    profile = null
 }
 
 
