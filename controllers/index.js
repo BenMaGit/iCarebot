@@ -35,8 +35,8 @@ async function commandHandler(event){
                             break
                         }
                         inSession = profile
-                        //setTimeout(endSession, 1000 * 60)
-                        console.log(profile.userID + ' 開始諮商')
+                        setTimeout(endSession, 1000 * 60)
+                        console.log(inSession.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
                         inSession = null
@@ -125,8 +125,9 @@ async function postbackHandler(event){
     }
 }
 
-function endSession (event) {
-    profile = null
+function endSession () {
+    autoReply.destinedMessage('您的諮商時間已結束, 謝謝', inSession.userID)
+    inSession = null
 }
 
 
