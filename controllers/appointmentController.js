@@ -7,8 +7,6 @@ const autoReply = require('../utils/replyHandler')
 const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
-    let appttime = parseInt(time.split(':')[0], 10)
-   
     let existingAppt = await Appointment.findByID(userId)
     //無預約時間
     if(!date|| !time){
@@ -16,7 +14,7 @@ const confirmAppointment = async (event, date, time) =>{
         return
     }
     //預約以前的時間
-    if(isToday(date) && isPassedTime(appttime*60) || isPassed(date)){
+    if(isToday(date) && isPassedTime(parseInt(time.split(':')[0], 10) * 60) || isPassed(date)){
         console.log("預約時間不符")
         autoReply.replyHandler(event, '請重新選擇您預約的時間' )
         return
