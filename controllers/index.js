@@ -31,7 +31,7 @@ async function commandHandler(event){
                         break;
                 case '開始諮商':
                         profile = await appoitnmentController.startSession(event)
-                        setTimeout(endSession, 60 * 60)
+                        setTimeout(endSession, 1000 * 60)
                         console.log(profile.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
