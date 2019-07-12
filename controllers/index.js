@@ -87,6 +87,9 @@ async function postbackHandler(event){
                     break
                 }
                 appointmentSheet[userID].time = action[1]
+                if(!appointmentSheet[userID].date){
+                    autoReply.replyHandler(event, '請選擇日期')
+                }
                 let confirmTemplate = templates.confirmTemplate(
                     appointmentSheet[userID].date,
                     appointmentSheet[userID].time)
