@@ -31,22 +31,26 @@ async function commandHandler(event){
                         break;
                 case '開始諮商':
                         profile = await appoitnmentController.startSession(event)
-                        setTimeout(endSession, 1000 * 60)
+                        if(!profile){
+                            break
+                        }
+                        inSession = profile
+                        //setTimeout(endSession, 1000 * 60)
                         console.log(profile.userID + ' 開始諮商')
                         break;
                 case '結束諮商':
-                        profile = null
+                        inSession = null
                         return;
             }
         break;
     }
-    if(!profile){
+    if(!inSession){
         return
     }
-    if(profile.userID === event.source.userId){
-        console.log(profile.userID)
-        data = {name : profile.name,
-                userId : profile.userID,
+    if(inSession.userID === event.source.userId){
+        console.log(inSession.userID)
+        data = {name : inSession.name,
+                userId : inSession.userID,
                 message: event.message.text}
        
         //TODO Server API to send Message to web chatroom
@@ -121,7 +125,7 @@ async function postbackHandler(event){
     }
 }
 
-function endSession () {
+function endSession (event) {
     profile = null
 }
 
