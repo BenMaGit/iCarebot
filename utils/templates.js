@@ -210,7 +210,7 @@ function confirmTemplate (date, time) {
 function generateNextWeek(){
     let j = 12
     let dateArray = []
-    for(let i = 0; i <= j; i++){
+    for(let i = 0; i < j; i++){
         let date = new Date()
         date.setDate(date.getDate() + i)
         if(date.getDay() === 6 || date.getDay() === 0){
