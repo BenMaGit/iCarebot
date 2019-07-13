@@ -92,8 +92,8 @@ const isPassed = (someDate) => {
     console.log(someDate+"isPassed")
     const today = new Date()
     return someDate.getDate() < today.getDate() &&
-      someDate.getMonth() < today.getMonth() &&
-      someDate.getFullYear() < today.getFullYear()
+      someDate.getMonth() <= today.getMonth() &&
+      someDate.getFullYear() <= today.getFullYear()
 }
 
 const isPassedTime = (someTime) =>{
