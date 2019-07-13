@@ -11,7 +11,7 @@ function ApptChart(){
 
 }
 var appointmentSheet = {}
-var profile;
+var profile, inSession;
 async function commandHandler(event){
     switch(event.message.type){
         case 'text':
