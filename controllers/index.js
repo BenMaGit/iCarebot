@@ -129,14 +129,14 @@ async function postbackHandler(event){
 }
 
 function endSession () {
-    autoReply.destinedMessage('您的諮商時間已結束, 謝謝', inSession.userID)
+    //autoReply.destinedMessage('您的諮商時間已結束, 謝謝', inSession.userID)
     socket.emit('endSessionNotice', inSession)
     inSession = null
 }
 
 function reminder(){
     socket.emit('endSessionReminder', '諮商時間還有十分鐘')
-    autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
+    //autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
 }
 
 
