@@ -14,7 +14,7 @@ const confirmAppointment = async (event, date, time) =>{
         return
     }
     //預約以前的時間
-    if(isToday(new Date(date)) && isPassedTime(parseInt(time.split(':')[0], 10) * 60) || isPassed(new Date(date))){
+    if((isToday(new Date(date)) && isPassedTime(parseInt(time.split(':')[0], 10) * 60)) || isPassed(new Date(date))){
         console.log("預約時間不符")
         autoReply.replyHandler(event, '您選擇的時間已過' )
         return
@@ -34,10 +34,11 @@ const confirmAppointment = async (event, date, time) =>{
             return
         }
         console.log('Creating Appointment')
+        let formattedTime = time.split(':')[0]+':00:00'
         let appointment = new Appointment({
             profile: profile,
             date: date,
-            time: time
+            time: formattedTime
         })
         appointment.save().then(()=>{
             autoReply.replyHandler(event, '預約成功!' )
@@ -82,14 +83,12 @@ const startSession = async(event) =>{
 
 //check date
 const isToday = (someDate) => {
-    console.log(someDate+"isToday")
     const today = new Date()
     return someDate.getDate() == today.getDate() &&
       someDate.getMonth() == today.getMonth() &&
       someDate.getFullYear() == today.getFullYear()
 }
 const isPassed = (someDate) => {
-    console.log(someDate+"isPassed")
     const today = new Date()
     return someDate.getDate() < today.getDate() &&
       someDate.getMonth() <= today.getMonth() &&
