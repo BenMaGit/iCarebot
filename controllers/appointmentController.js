@@ -34,11 +34,10 @@ const confirmAppointment = async (event, date, time) =>{
             return
         }
         console.log('Creating Appointment')
-        let formattedTime = time.split(':')[0]+':00:00'
         let appointment = new Appointment({
             profile: profile,
             date: date,
-            time: formattedTime
+            time: time
         })
         appointment.save().then(()=>{
             autoReply.replyHandler(event, '預約成功!' )
