@@ -30,11 +30,12 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        if(inSession.userID === event.source.userId){
-                            autoReply.replyHandler(event, '您正在諮商中')
-                        }
                         profile = await appoitnmentController.startSession(event)
                         if(!profile){
+                            break;
+                        }
+                        if(profile.userID === event.source.userId){
+                            autoReply.replyHandler(event, '您正在諮商中')
                             break;
                         }
                         inSession = profile
