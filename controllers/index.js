@@ -35,7 +35,7 @@ async function commandHandler(event){
                             break
                         }
                         inSession = profile
-                        socket.emit('sessionStart', inSession.email)
+                        socket.emit('sessionStart', inSession)
                         //30秒提醒結束, 測試
                         setTimeout(reminder, 1000 * 30)
                         //一分鐘結束諮商 無法傳送訊息到web端
