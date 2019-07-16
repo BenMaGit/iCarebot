@@ -34,9 +34,8 @@ async function commandHandler(event){
                         if(!profile){
                             break;
                         }
-                        if(profile.userID === event.source.userId){
+                        if(inSession){
                             autoReply.replyHandler(event, '您正在諮商中')
-                            break;
                         }
                         inSession = profile
                         socket.emit('sessionStart', inSession)
