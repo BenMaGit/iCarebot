@@ -32,7 +32,11 @@ async function commandHandler(event){
                 case '開始諮商':
                         profile = await appoitnmentController.startSession(event)
                         if(!profile){
-                            break
+                            break;
+                        }
+                        if(inSession){
+                            autoReply.replyHandler(event, '系統提醒: 您正在諮商中')
+                            break;
                         }
                         inSession = profile
                         socket.emit('sessionStart', inSession)
