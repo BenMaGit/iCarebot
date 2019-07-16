@@ -35,13 +35,13 @@ async function commandHandler(event){
                             break
                         }
                         inSession = profile
-                        socket.emit('sessionStart', inSession.userID)
+                        socket.emit('sessionStart', inSession.email)
                         //30秒提醒結束, 測試
                         setTimeout(reminder, 1000 * 30)
                         //一分鐘結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, 1000 * 60)
                         console.log(inSession.userID + ' 開始諮商')
-                        break;
+                        return;
                 case '結束諮商':
                         inSession = null
                         return;
