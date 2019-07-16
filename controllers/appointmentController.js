@@ -74,7 +74,7 @@ const startSession = async(event) =>{
         return
     }
     let profile = await Profile.lookUp(event.source.userId)
-    autoReply.replyHandler(event, '已幫您與諮商師進行連接')
+    
     return profile
         
 }

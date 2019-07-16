@@ -45,6 +45,7 @@ async function commandHandler(event){
                         setTimeout(reminder, 1000 * 30)
                         //一分鐘結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, 1000 * 60)
+                        autoReply.replyHandler(event, '已幫您與諮商師進行連接')
                         console.log(inSession.userID + ' 開始諮商')
                         return;
                 case '結束諮商':
