@@ -35,7 +35,9 @@ async function commandHandler(event){
                             break;
                         }
                         if(inSession){
+                            console.log('Already in Session')
                             autoReply.replyHandler(event, '您正在諮商中')
+                            break
                         }
                         inSession = profile
                         socket.emit('sessionStart', inSession)
