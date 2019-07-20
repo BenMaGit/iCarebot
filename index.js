@@ -43,6 +43,10 @@ socket.on('webSent', (obj)=>{
     bot.push(obj.userId, obj.message)
 })
 
+socket.on('reminder', (obj)=>{
+    bot.push(obj.profile.userID, 'You have an appointment at ' + obj.time + ' later today')
+})
+
 
 
 

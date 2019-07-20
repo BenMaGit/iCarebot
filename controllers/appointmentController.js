@@ -1,6 +1,7 @@
 const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
 const autoReply = require('../utils/replyHandler')
+const timeChecker = require('../utils/timeChecker')
 
 
 
@@ -14,9 +15,9 @@ const confirmAppointment = async (event, date, time) =>{
         return
     }
     //預約以前的時間
-    if((isToday(new Date(date)) && isPassedTime(parseInt(time.split(':')[0], 10) * 60)) || isPassed(new Date(date))){
+    if((timeChecker.isToday(new Date(date)) && timeChecker.isPassedTime(parseInt(time.split(':')[0], 10) * 60)) || timeChecker.isPassed(new Date(date))){
         console.log("預約時間不符")
-        autoReply.replyHandler(event, '您選擇的時間已過' )
+        autoReply.replyHandler(event, '您選擇的時間已過, 請重新選擇一個時間' )
         return
     }
     
@@ -69,7 +70,7 @@ const startSession = async(event) =>{
     let apptTime = parseInt(appointment.time.split(':')[0], 10)
     let sessionStart = apptTime * 60
     let sessionEnd = (apptTime + 1) * 60
-    if(!isToday(apptDate) || !inTime(sessionStart, sessionEnd)){
+    if(!timeChecker.isToday(apptDate) || !timeChecker.inTime(sessionStart, sessionEnd)){
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
         return
     }
@@ -78,37 +79,6 @@ const startSession = async(event) =>{
     return profile
         
 }
-
-
-//check date
-const isToday = (someDate) => {
-    const today = new Date()
-    return someDate.getDate() == today.getDate() &&
-      someDate.getMonth() == today.getMonth() &&
-      someDate.getFullYear() == today.getFullYear()
-}
-const isPassed = (someDate) => {
-    const today = new Date()
-    return someDate.getDate() < today.getDate() &&
-      someDate.getMonth() <= today.getMonth() &&
-      someDate.getFullYear() <= today.getFullYear()
-}
-
-const isPassedTime = (someTime) =>{
-    var now = new Date();
-    var time = now.getHours() * 60 + now.getMinutes();
-    return time >= someTime
-}
-
-
-//check time
-function inTime(start, end) {
-    var now = new Date();
-    var time = now.getHours() * 60 + now.getMinutes();
-    console.log("Check Time " + time + " NOW")
-    return time >= start && time < end;
-}
-
 
 
 module.exports = {
