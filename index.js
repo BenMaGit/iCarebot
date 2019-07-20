@@ -44,7 +44,7 @@ socket.on('webSent', (obj)=>{
 })
 
 socket.on('reminder', (obj)=>{
-    console.log(obg.profile.userID +"got reminder")
+    console.log(obj.profile.userID +"got reminder")
     bot.push(obj.profile.userID, 'You have an appointment at ' + obj.time + ' later today')
 })
 
