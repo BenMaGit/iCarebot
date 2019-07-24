@@ -22,7 +22,7 @@ const confirmAppointment = async (event, date, time) =>{
     }
     
     //移除之前的預約記錄
-    if(existingAppt){
+    if(!timeChecker.isPassed(new Date(existingAppt.date))){
         await existingAppt.remove()
     }
     //檢查這個時段有沒有被預約
