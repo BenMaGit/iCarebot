@@ -12,17 +12,22 @@ const confirmAppointment = async (event, date, time) =>{
         return
     }
     //預約以前的時間
-    if((timeChecker.isToday(new Date(date)) && timeChecker.isPassedTime(parseInt(time.split(':')[0], 10) * 60)) || timeChecker.isPassed(new Date(date))){
+    if(timeChecker.isPassed(date, parseInt(time.split(':')[0]))){
         console.log("預約時間不符")
         autoReply.replyHandler(event, '您選擇的時間已過, 請重新選擇一個時間' )
         return
     }
+    /* if((timeChecker.isToday(new Date(date)) && timeChecker.isPassedTime(parseInt(time.split(':')[0], 10) * 60)) || timeChecker.isPassed(new Date(date))){
+        console.log("預約時間不符")
+        autoReply.replyHandler(event, '您選擇的時間已過, 請重新選擇一個時間' )
+        return
+    } */
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
     let existingAppt = await Appointment.find().byId(userId)
-    //移除之前的預約記錄
+    //移除預約記錄避免重複預約
     for(let i = 0; i < existingAppt.length; i++){
-        if(!timeChecker.isPassed(new Date(existingAppt[i].date))){
+        if(!timeChecker.isPassed(existingAppt[i].date, parseInt(existingAppt[i].time.split(':')[0]))){
             await existingAppt[i].remove()
         }
     }
@@ -53,7 +58,7 @@ const confirmAppointment = async (event, date, time) =>{
 }
 
 const lookUpAppointment = async (event) =>{
-    let appointment = await Appointment.findByID(event.source.userId)
+    let appointment = await Appointment.findLatest(event.source.userId)
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
@@ -81,10 +86,22 @@ const startSession = async(event) =>{
         
 }
 
+const cancelAppointment = async(event) =>{
+    let appointment = await Appointment.findLatest(event.source.userId)
+    if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
+        autoReply.replyHandler(event, '您沒有任何預約')
+    }else{
+        autoReply.replyHandler(event, '您取消了在: ' + appointment.date + ' ' + appointment.time+' 的預約')
+        await appointment.remove()
+    } 
+
+}
+
 
 module.exports = {
     confirmAppointment,
     lookUpAppointment,
-    startSession
+    startSession,
+    cancelAppointment
 
 }

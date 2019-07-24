@@ -16,5 +16,8 @@ appointmentSchema.query.byId = function(userID){
 appointmentSchema.query.byDate = function(date){
     return this.where({date:date})
 }
+appointmentSchema.statics.findLatest = function(userID){
+    return this.findOne({created_at: -1, 'profile.userID': userID})
+}
 
 module.exports = mongoose.model('Appointment', appointmentSchema)

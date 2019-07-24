@@ -50,6 +50,9 @@ async function commandHandler(event){
                 case '結束諮商':
                         inSession = null
                         return;
+                case '取消預約':
+                        appoitnmentController.cancelAppointment(event)
+                        return     
             }
         break;
     }
