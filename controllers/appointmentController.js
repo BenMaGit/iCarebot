@@ -22,6 +22,12 @@ const confirmAppointment = async (event, date, time) =>{
     }
     
     //移除之前的預約記錄
+    for(let i = 0; i < existingAppt.length; i++){
+        if(!timeChecker.isPassed(new Date(existingAppt[i].date))){
+            await existingAppt[i].remove()
+        }
+
+    }
     if(!timeChecker.isPassed(new Date(existingAppt.date))){
         await existingAppt.remove()
     }
