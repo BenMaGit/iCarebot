@@ -4,7 +4,11 @@ const mongoose = require('mongoose')
 const controllers = require('./controllers')
 const configs = require('./configs')
 
-const bot = linebot(configs.botAccess);
+const bot = linebot({
+    channelId: process.env.channelId,
+    channelSecret: process.env.channelSecret,
+    channelAccessToken: process.env.channelAccessToken
+});
 
 
 // linebot listening event
@@ -22,7 +26,7 @@ const linebotParser = bot.parser();
 
 app.post('/', linebotParser);
 
-mongoose.connect(configs.mongodb).then(() =>{
+mongoose.connect(process.env.mongodb).then(() =>{
     var server = app.listen(process.env.PORT || 8080, function() {
         var port = server.address().port;
         console.log("App now running on port", port);

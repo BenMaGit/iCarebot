@@ -1,4 +1,4 @@
-configs/
+.env
 node_modules/
 *.code-workspace
-package-lock.json
+configs/
