@@ -2,6 +2,7 @@ const Appointment = require('../models/appointment')
 const Profile = require('../models/profile')
 const autoReply = require('../utils/replyHandler')
 const timeChecker = require('../utils/timeChecker')
+const template = require('../utils/templates')
 
 
 
@@ -62,7 +63,7 @@ const lookUpAppointment = async (event) =>{
     if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
-        autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
+        autoReply.replyHandler(event, template.cancelationTemplate(appointment))
     } 
 }
 
@@ -89,7 +90,7 @@ const startSession = async(event) =>{
 const cancelAppointment = async(event) =>{
     let appointment = await Appointment.findLatest(event.source.userId)
     if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
-        autoReply.replyHandler(event, '您沒有任何預約')
+        autoReply.replyHandler(event, '您沒有任何預約可以取消')
     }else{
         autoReply.replyHandler(event, '您取消了在: ' + appointment.date + ' ' + appointment.time+' 的預約')
         await appointment.remove()

@@ -221,6 +221,26 @@ function generateNextWeek(){
     }
     return dateArray
 }
+function cancelationTemplate(appointment){
+  let template = {
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "message",
+          "label": "取消預約",
+          "text": "取消預約"
+        }
+      ],
+      "title": "預約時間",
+      "text": appointment.date+' '+appointment.time
+    }
+  }
+  return template
+  
+}
 
 module.exports = {
     appointmentTemplate,
@@ -228,5 +248,6 @@ module.exports = {
     confirmTemplate,
     timeActionTemplate,
     timeColumnTemplate,
-    generateAvailableTimeSlot
+    generateAvailableTimeSlot,
+    cancelationTemplate
 }
