@@ -9,6 +9,7 @@ const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
     let existingAppt = await Appointment.findByID(userId)
+    console.log(existingAppt)
     //無預約時間
     if(!date|| !time){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
