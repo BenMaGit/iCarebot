@@ -9,7 +9,7 @@ const confirmAppointment = async (event, date, time) =>{
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
     let existingAppt = await Appointment.findByID(userId)
-    console.log(existingAppt)
+    console.log(existingAppt+ " Array is HERE")
     //無預約時間
     if(!date|| !time){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
@@ -25,6 +25,7 @@ const confirmAppointment = async (event, date, time) =>{
     //移除之前的預約記錄
     for(let i = 0; i < existingAppt.length; i++){
         if(!timeChecker.isPassed(new Date(existingAppt[i].date))){
+            console.log(existingAppt[i].date + " DATE IS HERE")
             await existingAppt[i].remove()
         }
 
