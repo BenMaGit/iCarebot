@@ -23,8 +23,8 @@ const confirmAppointment = async (event, date, time) =>{
     console.log(existingAppt+ " Array is HERE")
     //移除之前的預約記錄
     for(let i = 0; i < existingAppt.length; i++){
+        console.log(existingAppt[i].date + " DATE IS HERE")
         if(!timeChecker.isPassed(new Date(existingAppt[i].date))){
-            console.log(existingAppt[i].date + " DATE IS HERE")
             await existingAppt[i].remove()
         }
 
