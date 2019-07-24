@@ -59,7 +59,7 @@ const confirmAppointment = async (event, date, time) =>{
 
 const lookUpAppointment = async (event) =>{
     let appointment = await Appointment.findLatest(event.source.userId)
-    if(!appointment){
+    if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else{
         autoReply.replyHandler(event, '您預約的時段是: ' + appointment.date + ' ' + appointment.time)
@@ -67,8 +67,8 @@ const lookUpAppointment = async (event) =>{
 }
 
 const startSession = async(event) =>{
-    let appointment = await Appointment.findByID(event.source.userId)
-    if(!appointment){
+    let appointment = await Appointment.findLatest(event.source.userId)
+    if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
         autoReply.replyHandler(event, '您沒有任何預約')
         return
     }
