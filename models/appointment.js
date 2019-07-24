@@ -10,7 +10,7 @@ const appointmentSchema = new  Schema({
 appointmentSchema.statics.checkAvailableTime = function(date, time){
     return this.findOne({date:date, time:time})
 }
-appointmentSchema.statics.findByID = function(userID){
+appointmentSchema.query.findByID = function(userID){
     return this.find({'profile.userID':userID})
 }
 appointmentSchema.query.byDate = function(date){
