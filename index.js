@@ -2,7 +2,7 @@ const linebot = require('linebot');
 const express = require('express');
 const mongoose = require('mongoose')
 const controllers = require('./controllers')
-const configs = require('./configs')
+
 
 const bot = linebot({
     channelId: process.env.channelId,
