@@ -19,7 +19,7 @@ const confirmAppointment = async (event, date, time) =>{
     }
     let userId = event.source.userId
     let profile = await Profile.lookUp(userId)
-    let existingAppt = await Appointment.find().findByID(userId)
+    let existingAppt = await Appointment.find().byId(userId)
     console.log(existingAppt+ " Array is HERE")
     //移除之前的預約記錄
     for(let i = 0; i < existingAppt.length; i++){
