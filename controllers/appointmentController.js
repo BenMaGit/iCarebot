@@ -60,16 +60,18 @@ const confirmAppointment = async (event, date, time) =>{
 
 const lookUpAppointment = async (event) =>{
     let appointment = await Appointment.findLatest(event.source.userId)
-    if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
+    if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
+    }else if (timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
+        autoReply.replyHandler(event, '您的預約時間已過, 您的預約時間是: ' + appointment.date + ' ' + appointment.time)
     }else{
         autoReply.replyHandler(event, template.cancelationTemplate(appointment))
-    } 
+    }
 }
 
 const startSession = async(event) =>{
     let appointment = await Appointment.findLatest(event.source.userId)
-    if(!appointment || timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
+    if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
         return
     }
