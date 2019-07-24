@@ -1,7 +1,7 @@
 const autoReply = require('../utils/replyHandler')
 const templates = require('../utils/templates')
 const appoitnmentController = require('./appointmentController')
-const rp = require('request-promise')
+
 const socket = require('socket.io-client')('http://35.194.253.53:3000')
 
 /* To differentiate user's appointment time
