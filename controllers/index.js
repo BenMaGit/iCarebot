@@ -134,7 +134,7 @@ async function postbackHandler(event){
                 appointmentSheet[userID].time = ''
                 autoReply.replyHandler(event, '已結束預約流程')
                 break
-        case 'Topic':
+        case 'Topics':
                 let confirmTemplate = templates.confirmTemplate(
                     appointmentSheet[userID].date,
                     appointmentSheet[userID].time)
