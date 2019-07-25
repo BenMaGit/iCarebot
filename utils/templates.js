@@ -262,7 +262,7 @@ function topicTemplate(){
             },
             {
               "type": "postback",
-              "label": " 職涯問題",
+              "label": "職涯問題",
               "data": "Topics:職涯問題"
             },
             {
