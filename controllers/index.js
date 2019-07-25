@@ -41,9 +41,10 @@ async function commandHandler(event){
                         inSession = profile
                         socket.emit('sessionStart', inSession)
                         //30秒提醒結束, 測試
-                        setTimeout(reminder, 1000 * 30)
+                        let sessionTime = calSessionTime()
+                        setTimeout(reminder, sessionTime/2)
                         //一分鐘結束諮商 無法傳送訊息到web端
-                        setTimeout(endSession, 1000 * 60)
+                        setTimeout(endSession, sessionTime)
                         autoReply.replyHandler(event, '已幫您與諮商師進行連接')
                         console.log(inSession.userID + ' 開始諮商')
                         return;
@@ -54,7 +55,7 @@ async function commandHandler(event){
                         appoitnmentController.cancelAppointment(event)
                         return     
             }
-        break;
+            break;
     }
     if(!inSession){
         return
@@ -146,6 +147,16 @@ function endSession () {
 function reminder(){
     socket.emit('endSessionReminder', '諮商時間還有十分鐘')
     autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
+}
+
+function calSessionTime(){
+    let sessionStart = new Date().getTime()
+    let apptDate = new Date(inSession.date).getTime()
+    let apptTime = parseInt(inSesson.time.split(':')[0], 10)
+    let sessionEnd = apptDate + ((apptTime + 1) * 60 - 10) * 60 * 1000 //五十分鐘諮商時間
+    console.log((sessionEnd - sessionStart)/2+ " reminder time")
+    console.log(sessionEnd - sessionStart+ " remaining time")
+    return sessionEnd - sessionStart
 }
 
 
