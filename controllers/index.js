@@ -40,10 +40,10 @@ async function commandHandler(event){
                         }
                         inSession = appointment.profile
                         socket.emit('sessionStart', inSession)
-                        //30秒提醒結束, 測試
+                        //時間過一半會提醒
                         let sessionTime = calSessionTime(appointment)
-                        setTimeout(reminder, sessionTime/2)
-                        //一分鐘結束諮商 無法傳送訊息到web端
+                        setTimeout(reminder.bind(null, sessionTime), sessionTime/2)
+                        //結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, sessionTime)
                         autoReply.replyHandler(event, '已幫您與諮商師進行連接')
                         console.log(inSession.userID + ' 開始諮商')
@@ -144,9 +144,10 @@ function endSession () {
     inSession = null
 }
 
-function reminder(){
-    socket.emit('endSessionReminder', '諮商時間還有十分鐘')
-    autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
+function reminder(sessionTime){
+    let time = new Date(sessionTime).getMinutes()
+    socket.emit('endSessionReminder', '諮商時間還有'+time+'分鐘')
+    autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ time + '分鐘, 謝謝', inSession.userID)
 }
 
 function calSessionTime(appointment){

@@ -79,7 +79,7 @@ const startSession = async(event) =>{
     let apptDate = new Date(appointment.date)
     let apptTime = parseInt(appointment.time.split(':')[0], 10)
     let sessionStart = apptTime * 60
-    let isLate = sessionStart + 30
+    let isLate = sessionStart + 10
     let sessionEnd = (apptTime + 1) * 60
     if(!timeChecker.isToday(apptDate) || !timeChecker.inTime(sessionStart, sessionEnd)){
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
