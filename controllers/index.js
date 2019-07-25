@@ -152,7 +152,7 @@ function reminder(){
 function calSessionTime(){
     let sessionStart = new Date().getTime()
     let apptDate = new Date(inSession.date).getTime()
-    let apptTime = parseInt(inSesson.time.split(':')[0], 10)
+    let apptTime = parseInt(inSession.time.split(':')[0], 10)
     let sessionEnd = apptDate + ((apptTime + 1) * 60 - 10) * 60 * 1000 //五十分鐘諮商時間
     console.log((sessionEnd - sessionStart)/2+ " reminder time")
     console.log(sessionEnd - sessionStart+ " remaining time")
