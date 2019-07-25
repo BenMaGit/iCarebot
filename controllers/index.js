@@ -89,7 +89,7 @@ async function commandHandler(event){
     } 
 }
 async function postbackHandler(event){
-    let action = event.postback.data.split(' ')
+    let action = event.postback.data.split(':')
     let userID = event.source.userId
     if(!appointmentSheet[userID]){
         appointmentSheet[event.source.userId] = new ApptChart()
