@@ -75,12 +75,11 @@ const startSession = async(event) =>{
         autoReply.replyHandler(event, '您沒有任何預約')
         return
     }
-    //TODO 遲到處理
     let apptDate = new Date(appointment.date)
     let apptTime = parseInt(appointment.time.split(':')[0], 10)
     let sessionStart = apptTime * 60
-    let isLate = sessionStart + 10
-    let sessionEnd = (apptTime + 1) * 60
+    let isLate = sessionStart + 10 //超過預約十分鐘 遲到
+    let sessionEnd = (apptTime + 1) * 60 - 10  //五十分結束
     if(!timeChecker.isToday(apptDate) || !timeChecker.inTime(sessionStart, sessionEnd)){
         autoReply.replyHandler(event, '現在不是您預約的時段\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time)
         return
@@ -88,7 +87,6 @@ const startSession = async(event) =>{
         autoReply.replyHandler(event, '您已經遲到了十分鐘以上\n'+'您的預約時段是: \n' + appointment.date + ' ' + appointment.time +'\n請重新預約')
         return
     }
-    let profile = await Profile.lookUp(event.source.userId)
     
     return appointment
         

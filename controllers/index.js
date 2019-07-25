@@ -29,14 +29,14 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        appointment = await appoitnmentController.startSession(event)
-                        if(!appointment){
-                            break;
-                        }
-                        if(inSession){
+                        if(inSession.userID === event.source.userId){
                             console.log('Already in Session')
                             autoReply.replyHandler(event, '您正在諮商中')
                             return
+                        }
+                        appointment = await appoitnmentController.startSession(event)
+                        if(!appointment){
+                            break;
                         }
                         inSession = appointment.profile
                         socket.emit('sessionStart', inSession)
@@ -146,8 +146,8 @@ function endSession () {
 
 function reminder(sessionTime){
     let time = new Date(sessionTime).getMinutes()
-    socket.emit('endSessionReminder', '諮商時間還有'+time+'分鐘')
-    autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ time + '分鐘, 謝謝', inSession.userID)
+    socket.emit('endSessionReminder', '諮商時間還有'+time/2+'分鐘')
+    autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ time/2 + '分鐘, 謝謝', inSession.userID)
 }
 
 function calSessionTime(appointment){
