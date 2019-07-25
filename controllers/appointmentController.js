@@ -63,7 +63,7 @@ const lookUpAppointment = async (event) =>{
     if(!appointment){
         autoReply.replyHandler(event, '您沒有任何預約')
     }else if (timeChecker.isPassed(appointment.date, parseInt(appointment.time.split(':')[0]))){
-        autoReply.replyHandler(event, '您在接下來兩星期沒有任何預約時段, 您最近一次的預約是:\n' + appointment.date + apoointment.time)
+        autoReply.replyHandler(event, '您在接下來兩星期沒有任何預約時段, 您最近一次的預約是:\n' + appointment.date + appointment.time)
     }else{
         autoReply.replyHandler(event, template.cancelationTemplate(appointment))
     }
