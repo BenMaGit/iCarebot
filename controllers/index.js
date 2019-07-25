@@ -29,8 +29,8 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        profile = await appoitnmentController.startSession(event)
-                        if(!profile){
+                        appointment = await appoitnmentController.startSession(event)
+                        if(!appointment){
                             break;
                         }
                         if(inSession){
@@ -38,7 +38,7 @@ async function commandHandler(event){
                             autoReply.replyHandler(event, '您正在諮商中')
                             return
                         }
-                        inSession = profile
+                        inSession = appointment.profile
                         socket.emit('sessionStart', inSession)
                         //30秒提醒結束, 測試
                         let sessionTime = calSessionTime(inSession)
@@ -151,10 +151,10 @@ function reminder(){
 
 function calSessionTime(session){
     let sessionStart = new Date().getTime()
-    let apptDate = new Date(session.date).getTime()
+    let apptDate = new Date(inSession.date).getTime()
     console.log(appDate + ' appointment Date')
     console.log(session.time + ' appointment time')
-    let apptTime = parseInt(session.time.split(':')[0], 10)
+    let apptTime = parseInt(inSession.time.split(':')[0], 10)
     let sessionEnd = apptDate + ((apptTime + 1) * 60 - 10) * 60 * 1000 //五十分鐘諮商時間
     console.log((sessionEnd - sessionStart)/2+ " reminder time")
     console.log(sessionEnd - sessionStart+ " remaining time")

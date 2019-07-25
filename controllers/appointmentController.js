@@ -90,7 +90,7 @@ const startSession = async(event) =>{
     }
     let profile = await Profile.lookUp(event.source.userId)
     
-    return profile
+    return appointment
         
 }
 
