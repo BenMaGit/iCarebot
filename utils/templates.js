@@ -17,19 +17,19 @@ function appointmentTemplate (){
                   "type": "postback",
                   "label": nextNineDays[0],
                   "text": "選擇"+nextNineDays[0],
-                  "data": "選擇日期 " + nextNineDays[0]
+                  "data": "選擇日期:" + nextNineDays[0]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[1],
                   "text": "選擇"+nextNineDays[1],
-                  "data": "選擇日期 " + nextNineDays[1]
+                  "data": "選擇日期:" + nextNineDays[1]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[2],
                   "text": "選擇"+nextNineDays[2],
-                  "data": "選擇日期 " + nextNineDays[2]
+                  "data": "選擇日期:" + nextNineDays[2]
                 }
               ]
             },
@@ -41,19 +41,19 @@ function appointmentTemplate (){
                   "type": "postback",
                   "label": nextNineDays[3],
                   "text": "選擇"+nextNineDays[3],
-                  "data": "選擇日期 " + nextNineDays[3]
+                  "data": "選擇日期:" + nextNineDays[3]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[4],
                   "text": "選擇"+nextNineDays[4],
-                  "data": "選擇日期 " + nextNineDays[4]
+                  "data": "選擇日期:" + nextNineDays[4]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[5],
                   "text": "選擇"+nextNineDays[5],
-                  "data": "選擇日期 " + nextNineDays[5]
+                  "data": "選擇日期:" + nextNineDays[5]
                 }
               ]
             },
@@ -65,19 +65,19 @@ function appointmentTemplate (){
                     "type": "postback",
                     "label": nextNineDays[6],
                     "text": "選擇"+nextNineDays[6],
-                    "data": "選擇日期 " + nextNineDays[6]
+                    "data": "選擇日期:" + nextNineDays[6]
                   },
                   {
                     "type": "postback",
                     "label": nextNineDays[7],
                     "text": "選擇"+nextNineDays[7],
-                    "data": "選擇日期 " + nextNineDays[7]
+                    "data": "選擇日期:" + nextNineDays[7]
                   },
                   {
                     "type": "postback",
                     "label": nextNineDays[8],
                     "text": "選擇"+nextNineDays[8],
-                    "data": "選擇日期 " + nextNineDays[8]
+                    "data": "選擇日期:" + nextNineDays[8]
                   },
                 ]
             },
@@ -89,19 +89,19 @@ function appointmentTemplate (){
                   "type": "postback",
                   "label": nextNineDays[9],
                   "text": "選擇"+nextNineDays[9],
-                  "data": "選擇日期 " + nextNineDays[9]
+                  "data": "選擇日期:" + nextNineDays[9]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[10],
                   "text": "選擇"+nextNineDays[10],
-                  "data": "選擇日期 " + nextNineDays[10]
+                  "data": "選擇日期:" + nextNineDays[10]
                 },
                 {
                   "type": "postback",
                   "label": nextNineDays[11],
                   "text": "選擇"+nextNineDays[11],
-                  "data": "選擇日期 " + nextNineDays[11]
+                  "data": "選擇日期:" + nextNineDays[11]
                 },
               ]
           }
@@ -154,7 +154,7 @@ function timeActionTemplate (time){
       "type": "postback",
       "label": time,
       "text": "選擇 "+ time,
-      "data": "選擇時間 "+ time
+      "data": "選擇時間:"+ time
     }
     return template
 }
@@ -204,6 +204,79 @@ function confirmTemplate (date, time) {
   return template
 
 }
+function topicTemplate(){
+  let template = {
+    "type": "template",
+    "altText": "this is a carousel template",
+    "template": {
+      "type": "carousel",
+      "actions": [],
+      "columns": [
+        {
+          "text": "你想要諮商的項目是?",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "憂鬱",
+              "data": "Topics:憂鬱"
+            },
+            {
+              "type": "postback",
+              "label": "焦慮",
+              "data": "Topics:焦慮"
+            },
+            {
+              "type": "postback",
+              "label": "情緒控管",
+              "data": "Topics:情緒控管"
+            }
+          ]
+        },
+        {
+          "text": "你想要諮商的項目是?",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "性別認同",
+              "data": "Topics:性別認同"
+            },
+            {
+              "type": "postback",
+              "label": "藥物成癮",
+              "data": "Topics:藥物成癮"
+            },
+            {
+              "type": "postback",
+              "label": "家庭問題",
+              "data": "Topics:家庭問題"
+            }
+          ]
+        },
+        {
+          "text": "你想要諮商的項目是?",
+          "actions": [
+            {
+              "type": "postback",
+              "label": "社交問題",
+              "data": "Topics:社交問題"
+            },
+            {
+              "type": "postback",
+              "label": " 職涯問題",
+              "data": "Topics:職涯問題"
+            },
+            {
+              "type": "postback",
+              "label": "其他項目",
+              "data": "Topics:其他項目"
+            }
+          ]
+        }
+      ]
+    }
+  }
+  return template
+}
 
 
 
@@ -249,5 +322,6 @@ module.exports = {
     timeActionTemplate,
     timeColumnTemplate,
     generateAvailableTimeSlot,
-    cancelationTemplate
+    cancelationTemplate,
+    topicTemplate
 }

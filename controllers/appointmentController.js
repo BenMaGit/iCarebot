@@ -6,7 +6,7 @@ const template = require('../utils/templates')
 
 
 
-const confirmAppointment = async (event, date, time) =>{
+const confirmAppointment = async (event, date, time, topic) =>{
      //無預約時間
      if(!date|| !time){
         autoReply.replyHandler(event, '請選擇您預約的時間' )
@@ -45,7 +45,8 @@ const confirmAppointment = async (event, date, time) =>{
         let appointment = new Appointment({
             profile: profile,
             date: date,
-            time: time
+            time: time,
+            topic: topic
         })
         appointment.save().then(()=>{
             autoReply.replyHandler(event, '預約成功!' )

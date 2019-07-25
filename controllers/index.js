@@ -114,10 +114,7 @@ async function postbackHandler(event){
                 if(!appointmentSheet[userID].date){
                     autoReply.replyHandler(event, '請選擇日期')
                 }
-                let confirmTemplate = templates.confirmTemplate(
-                    appointmentSheet[userID].date,
-                    appointmentSheet[userID].time)
-                autoReply.replyHandler(event, confirmTemplate)
+                autoReply.replyHandler(event, templates.topicTemplate)
                 break
         case 'confirm':
                 console.log('Confirm')
@@ -128,7 +125,8 @@ async function postbackHandler(event){
                 appoitnmentController.confirmAppointment(
                     event, 
                     appointmentSheet[userID].date, 
-                    appointmentSheet[userID].time )
+                    appointmentSheet[userID].time,
+                    appointmentSheet[userID].topic )
                 break
         case 'cancel':
                 console.log('Cancel')
@@ -136,6 +134,14 @@ async function postbackHandler(event){
                 appointmentSheet[userID].time = ''
                 autoReply.replyHandler(event, '已結束預約流程')
                 break
+        case 'Topic':
+                let confirmTemplate = templates.confirmTemplate(
+                    appointmentSheet[userID].date,
+                    appointmentSheet[userID].time)
+                appointmentSheet[userID].topic = action[1]
+                autoReply.replyHandler(event, confirmTemplate)
+                break
+                    
     }
 }
 

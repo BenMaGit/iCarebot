@@ -4,7 +4,8 @@ const Schema = mongoose.Schema
 const appointmentSchema = new  Schema({
     profile: JSON,
     date: String,
-    time: String
+    time: String,
+    topic: String
 })
 
 appointmentSchema.statics.checkAvailableTime = function(date, time){
