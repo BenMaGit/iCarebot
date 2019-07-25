@@ -114,7 +114,7 @@ async function postbackHandler(event){
                 if(!appointmentSheet[userID].date){
                     autoReply.replyHandler(event, '請選擇日期')
                 }
-                autoReply.replyHandler(event, templates.topicTemplate)
+                autoReply.replyHandler(event, templates.topicTemplate())
                 break
         case 'confirm':
                 console.log('Confirm')
