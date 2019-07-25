@@ -29,15 +29,16 @@ async function commandHandler(event){
                         console.log('Frequently Asked Question')
                         break;
                 case '開始諮商':
-                        if(inSession.userID === event.source.userId){
+                        if(inSession){
                             console.log('Already in Session')
-                            autoReply.replyHandler(event, '您正在諮商中')
+                            autoReply.replyHandler(event, '正在諮商中')
                             return
                         }
                         appointment = await appoitnmentController.startSession(event)
                         if(!appointment){
                             break;
                         }
+                        
                         inSession = appointment.profile
                         socket.emit('sessionStart', inSession)
                         //時間過一半會提醒
