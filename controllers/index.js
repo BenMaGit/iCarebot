@@ -41,7 +41,7 @@ async function commandHandler(event){
                         inSession = appointment.profile
                         socket.emit('sessionStart', inSession)
                         //30秒提醒結束, 測試
-                        let sessionTime = calSessionTime(inSession)
+                        let sessionTime = calSessionTime(appointment)
                         setTimeout(reminder, sessionTime/2)
                         //一分鐘結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, sessionTime)
@@ -149,12 +149,12 @@ function reminder(){
     autoReply.destinedMessage('系統提醒: 您的諮商時間還有十分鐘, 謝謝', inSession.userID)
 }
 
-function calSessionTime(session){
+function calSessionTime(appointment){
     let sessionStart = new Date().getTime()
-    let apptDate = new Date(inSession.date).getTime()
+    let apptDate = new Date(appointment.date).getTime()
     console.log(appDate + ' appointment Date')
     console.log(session.time + ' appointment time')
-    let apptTime = parseInt(inSession.time.split(':')[0], 10)
+    let apptTime = parseInt(appointment.time.split(':')[0], 10)
     let sessionEnd = apptDate + ((apptTime + 1) * 60 - 10) * 60 * 1000 //五十分鐘諮商時間
     console.log((sessionEnd - sessionStart)/2+ " reminder time")
     console.log(sessionEnd - sessionStart+ " remaining time")
