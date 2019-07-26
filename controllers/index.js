@@ -40,9 +40,15 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
-                        socket.emit('sessionStart', inSession)
-                        //時間過一半會提醒
+                        //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
+                        let obj = {
+                            profile: inSession,
+                            timeLeft: sessionTime
+                        }
+                        //發送sessionStart 給web端
+                        socket.emit('sessionStart', obj)
+                        //時間過一半會提醒
                         setTimeout(reminder.bind(null, sessionTime), sessionTime/2)
                         //結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, sessionTime)
