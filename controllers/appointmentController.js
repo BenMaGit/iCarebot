@@ -38,7 +38,7 @@ const confirmAppointment = async (event, date, time, topic) =>{
     if(!timeSlot){
         //檢查資料庫有沒有個案資料
         if(!profile){
-            autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId+"&date="+encodeURIComponent(date)+"&time="+encodeURIComponent(time))
+            autoReply.replyHandler(event, '請到下列網址驗證您的學生身份'+'\n'+'http://35.194.223.224/register?linkToken='+userId+"&date="+encodeURIComponent(date)+"&time="+encodeURIComponent(time))+"&topic="+topic
             return
         }
         console.log('Creating Appointment')
