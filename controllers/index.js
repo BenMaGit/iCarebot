@@ -70,6 +70,7 @@ async function commandHandler(event){
     }
     if(inSession.userID === event.source.userId){
         console.log(inSession.userID)
+        console.log(therapist)
         data = {name : inSession.name,
                 userId : inSession.userID,
                 message : event.message.text,
