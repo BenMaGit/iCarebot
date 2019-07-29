@@ -41,6 +41,7 @@ async function commandHandler(event){
                         
                         inSession = appointment.profile
                         console.log(appointment+ ' start session Linebot')
+                        console.log(appointment.therapist + ' start session Linebot therapist')
                         console.log(appointment.time + ' start session Linebot')
                         console.log(appointment.profile.name + ' start session Linebot')
                         console.log(appointment.date + ' start session Linebot')
