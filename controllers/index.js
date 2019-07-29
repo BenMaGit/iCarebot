@@ -10,7 +10,7 @@ function ApptChart(){
 
 }
 var appointmentSheet = {}
-var profile, inSession;
+var inSession, therapist;
 async function commandHandler(event){
     switch(event.message.type){
         case 'text':
@@ -40,6 +40,7 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
+                        therapist = apoointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
                         let obj = {
@@ -71,8 +72,8 @@ async function commandHandler(event){
         console.log(inSession.userID)
         data = {name : inSession.name,
                 userId : inSession.userID,
-                message: event.message.text,
-                therapist: appointment.therapist
+                message : event.message.text,
+                therapist : therapist
                 }
        
         //TODO Determine which therapist should receive the message
@@ -159,9 +160,13 @@ function endSession () {
     inSession = null
 }
 
-function reminder(sessionTime){
+function reminder(sessionTime, therapist){
     let time = new Date(sessionTime).getMinutes()
-    socket.emit('endSessionReminder', '諮商時間還有'+time/2+'分鐘')
+    let obj = {
+        message:'諮商時間還有'+time/2+'分鐘',
+        therapist: therapist
+    }
+    socket.emit('endSessionReminder', obj)
     autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ time/2 + '分鐘, 謝謝', inSession.userID)
 }
 
