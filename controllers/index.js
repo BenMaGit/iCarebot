@@ -43,7 +43,7 @@ async function commandHandler(event){
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
                         let obj = {
-                            profile: inSession,
+                            appointment: appointment,
                             timeLeft: sessionTime
                         }
                         //發送sessionStart 給web端
@@ -73,7 +73,7 @@ async function commandHandler(event){
                 userId : inSession.userID,
                 message: event.message.text}
        
-        //TODO Server API to send Message to web chatroom
+        //TODO Determine which therapist should receive the message
         socket.emit('lineSent', data)
 /*         var options = {
             method: 'POST',
