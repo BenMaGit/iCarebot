@@ -40,7 +40,7 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
-                        console.log(appointment)
+                        console.log(appointment.therapist+ ' start session')
                         therapist = appointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
@@ -72,7 +72,7 @@ async function commandHandler(event){
     }
     if(inSession.userID === event.source.userId){
         console.log(inSession.userID)
-        console.log(therapist)
+        console.log(therapist +'Therapist')
         data = {name : inSession.name,
                 userId : inSession.userID,
                 message : event.message.text,
