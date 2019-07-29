@@ -42,6 +42,7 @@ async function commandHandler(event){
                         inSession = appointment.profile
                         console.log(appointment+ ' start session Linebot')
                         console.log(appointment.therapist + ' start session Linebot')
+                        console.log(appointment.name + ' start session Linebot')
                         therapist = appointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
