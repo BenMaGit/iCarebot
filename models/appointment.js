@@ -5,7 +5,8 @@ const appointmentSchema = new  Schema({
     profile: JSON,
     date: String,
     time: String,
-    topic: String
+    topic: String,
+    therapist: String,
 })
 
 appointmentSchema.statics.checkAvailableTime = function(date, time){
