@@ -71,7 +71,9 @@ async function commandHandler(event){
         console.log(inSession.userID)
         data = {name : inSession.name,
                 userId : inSession.userID,
-                message: event.message.text}
+                message: event.message.text,
+                therapist: appointment.therapist
+                }
        
         //TODO Determine which therapist should receive the message
         socket.emit('lineSent', data)
