@@ -40,7 +40,7 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
-                        therapist = apoointment.therapist
+                        therapist = appointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
                         let obj = {
