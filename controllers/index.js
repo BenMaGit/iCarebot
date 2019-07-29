@@ -40,6 +40,7 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
+                        console.log(appointment)
                         therapist = appointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
@@ -58,6 +59,7 @@ async function commandHandler(event){
                         return;
                 case '結束諮商':
                         inSession = null
+                        therapist = null
                         return;
                 case '取消預約':
                         appoitnmentController.cancelAppointment(event)
@@ -159,6 +161,7 @@ function endSession () {
     autoReply.destinedMessage('您的諮商時間已結束, 謝謝', inSession.userID)
     socket.emit('endSessionNotice', inSession)
     inSession = null
+    therapist = null
 }
 
 function reminder(sessionTime, therapist){
