@@ -187,7 +187,7 @@ function timeTemplate(columns){
   }
   return template
 }
-function confirmTemplate (date, time) {
+function confirmTemplate (date, time, therapist) {
 
   let template = {
     "type": "template",
@@ -207,7 +207,7 @@ function confirmTemplate (date, time) {
         }
       ],
       "title": "請確認以下的日期與時間",
-      "text": "您選擇了 "+ date + " " + time + "時段"
+      "text": "您選擇了 "+ date + " " + time + "與諮商師" + therapist +"的時段 "
     }
   }
   return template

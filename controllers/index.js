@@ -149,7 +149,9 @@ async function postbackHandler(event){
         case 'Topics':
                 let confirmTemplate = templates.confirmTemplate(
                     appointmentSheet[userID].date,
-                    appointmentSheet[userID].time)
+                    appointmentSheet[userID].time,
+                    appointmentSheet[userID].therapist
+                    )
                 appointmentSheet[userID].topic = action[1]
                 autoReply.replyHandler(event, confirmTemplate)
                 break
