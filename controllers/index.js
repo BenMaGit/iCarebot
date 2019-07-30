@@ -16,7 +16,7 @@ async function commandHandler(event){
         case 'text':
             switch (event.message.text){
                 case '線上預約':
-                        console.log('In appointment')
+                        console.log('Online Reservation Process')
                         let appointmentTemplate = templates.appointmentTemplate()
                         appointmentSheet[event.source.userId] = new ApptChart()
                         autoReply.replyHandler(event, appointmentTemplate)
@@ -40,11 +40,6 @@ async function commandHandler(event){
                         }
                         
                         inSession = appointment.profile
-                        console.log(appointment+ ' start session Linebot')
-                        console.log(appointment.therapist + ' start session Linebot therapist')
-                        console.log(appointment.time + ' start session Linebot')
-                        console.log(appointment.profile.name + ' start session Linebot')
-                        console.log(appointment.date + ' start session Linebot')
                         therapist = appointment.therapist
                         //計算剩餘時間
                         let sessionTime = calSessionTime(appointment)
@@ -75,8 +70,8 @@ async function commandHandler(event){
         return
     }
     if(inSession.userID === event.source.userId){
-        console.log(inSession.userID)
-        console.log(therapist +'Therapist')
+        console.log('Currently in session: '+ inSession.userID)
+        console.log('Message is being sent to ' + therapist)
         data = {name : inSession.name,
                 userId : inSession.userID,
                 message : event.message.text,
@@ -122,7 +117,6 @@ async function postbackHandler(event){
                 autoReply.replyHandler(event, timeTemplate)
                 break;
         case '選擇時間':
-                console.log('Please confirm action')
                 if(action[1] == '-'){
                     break
                 }

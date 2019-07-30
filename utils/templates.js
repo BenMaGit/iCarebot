@@ -1,4 +1,5 @@
 const Appointment = require('../models/appointment')
+const ShiftSchedule = require('../models/shiftSchedule')
 
 function appointmentTemplate (){
     let nextNineDays = generateNextWeek()
@@ -123,11 +124,13 @@ const generateAvailableTimeSlot = async (date) =>{
   if(bookedSlot.length == 5){
       return
   }
+  let day = weekDayTransform(date)
   for(let i = 0; i < schedule.length; i ++){
       if(bookedSlot.includes(schedule[i])){
           continue
       }
-      let actionLength = actionArray.push(timeActionTemplate(schedule[i]))
+      let shiftSchedule = ShiftSchedule.findOne().byDateAndTime(day, schedule[i])
+      let actionLength = actionArray.push(timeActionTemplate(schedule[i] + '-' + shiftSchedule.therapist))
       //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
       //一個 actionTemplate 只會有三個actions
       if(actionLength == 3){
@@ -278,7 +281,11 @@ function topicTemplate(){
   return template
 }
 
-
+function weekDayTransform(date){
+  let day = new Date(date).getDay()
+  let weekDay = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat']
+  return weekDay[day]
+}
 
 function generateNextWeek(){
     let j = 12
