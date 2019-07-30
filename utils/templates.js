@@ -131,6 +131,7 @@ const generateAvailableTimeSlot = async (date) =>{
           continue
       }
       let shiftSchedule = ShiftSchedule.findOne().byDayAndTime(day, schedule[i])
+      console.log(shiftSchedule)
       let actionLength = actionArray.push(timeActionTemplate((schedule[i] + '-' + shiftSchedule.therapist)))
       //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
       //一個 actionTemplate 只會有三個actions
@@ -154,7 +155,6 @@ const generateAvailableTimeSlot = async (date) =>{
 }
 
 function timeActionTemplate (time){
-  console.log(time)
     let template = {
       "type": "postback",
       "label": time,
