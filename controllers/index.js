@@ -120,7 +120,8 @@ async function postbackHandler(event){
                 if(action[1] == '-'){
                     break
                 }
-                appointmentSheet[userID].time = action[1]
+                appointmentSheet[userID].time = action[1].split('-')[0]
+                appointmentSheet[userID].therapist = action[1].split('-')[1]
                 if(!appointmentSheet[userID].date){
                     autoReply.replyHandler(event, '請選擇日期')
                 }
@@ -136,7 +137,8 @@ async function postbackHandler(event){
                     event, 
                     appointmentSheet[userID].date, 
                     appointmentSheet[userID].time,
-                    appointmentSheet[userID].topic )
+                    appointmentSheet[userID].topic,
+                    appointmentSheet[userID].therapist )
                 break
         case 'cancel':
                 console.log('Cancel')

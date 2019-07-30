@@ -163,7 +163,7 @@ function timeActionTemplate (time){
       "type": "postback",
       "label": time,
       "text": "選擇 "+ time.split('-')[0],
-      "data": "選擇時間 "+ time.split('-')[0]
+      "data": "選擇時間 "+ time
     }
     return template
 }
