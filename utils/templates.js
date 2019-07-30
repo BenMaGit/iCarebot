@@ -130,7 +130,7 @@ const generateAvailableTimeSlot = async (date) =>{
       if(bookedSlot.includes(schedule[i])){
           continue
       }
-      let shiftSchedule = ShiftSchedule.findOne().byDateAndTime(day, schedule[i])
+      let shiftSchedule = ShiftSchedule.findOne().byDayAndTime(day, schedule[i])
       let actionLength = actionArray.push(timeActionTemplate((schedule[i] + '-' + shiftSchedule.therapist)))
       //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
       //一個 actionTemplate 只會有三個actions
