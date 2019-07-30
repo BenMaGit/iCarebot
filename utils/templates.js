@@ -132,8 +132,11 @@ const generateAvailableTimeSlot = async (date) =>{
           continue
       }
       let shiftSchedule = await ShiftSchedule.findOne().byDayAndTime(day, schedule[i])
-      
-      let actionLength = actionArray.push(timeActionTemplate((schedule[i] + '-' + shiftSchedule.therapist)))
+      let name = ''
+      if(shiftSchedule){
+        name = shiftSchedule.therapist
+      }
+      let actionLength = actionArray.push(timeActionTemplate((schedule[i] + '-' + name)))
       //console.log(JSON.stringify(template.timeActionTemplate(schedule[i])))
       //一個 actionTemplate 只會有三個actions
       if(actionLength == 3){
