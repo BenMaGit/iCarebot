@@ -154,11 +154,12 @@ const generateAvailableTimeSlot = async (date) =>{
 }
 
 function timeActionTemplate (time){
+  console.log(time)
     let template = {
       "type": "postback",
       "label": time,
-      "text": "選擇 "+ time,
-      "data": "選擇時間 "+ time
+      "text": "選擇 "+ time.split('-')[0],
+      "data": "選擇時間 "+ time.split('-')[0]
     }
     return template
 }
