@@ -50,7 +50,7 @@ async function commandHandler(event){
                         //發送sessionStart 給web端
                         socket.emit('sessionStart', obj)
                         //時間過一半會提醒
-                        setTimeout(reminder.bind(null, sessionTime), sessionTime/2)
+                        setTimeout(reminder.bind(null, sessionTime), Math.floor(sessionTime/2))
                         //結束諮商 無法傳送訊息到web端
                         setTimeout(endSession, sessionTime)
                         autoReply.replyHandler(event, '已幫您與諮商師進行連接')
@@ -169,11 +169,11 @@ function endSession () {
 function reminder(sessionTime, therapist){
     let time = new Date(sessionTime).getMinutes()
     let obj = {
-        message:'諮商時間還有'+time/2+'分鐘',
+        message:'諮商時間還有'+Math.floor(time/2)+'分鐘',
         therapist: therapist
     }
     socket.emit('endSessionReminder', obj)
-    autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ time/2 + '分鐘, 謝謝', inSession.userID)
+    autoReply.destinedMessage('系統提醒: 您的諮商時間還有'+ Math.floor(time/2) + '分鐘, 謝謝', inSession.userID)
 }
 
 function calSessionTime(appointment){
