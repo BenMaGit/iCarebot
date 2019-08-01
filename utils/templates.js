@@ -289,7 +289,7 @@ function topicTemplate(){
 
 function weekDayTransform(date){
   let day = new Date(date).getDay()
-  let weekDay = ['Sun','Mon','Tue','Wed','Thur','Fri','Sat']
+  let weekDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
   return weekDay[day]
 }
 
