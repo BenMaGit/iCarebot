@@ -57,7 +57,7 @@ socket.on('therapistChanged', async (data)=>{
     let date = data.time.split(' ')[0]
     let time = data.time.split(' ')[1]
     console.log(date+" "+time)
-    if(time < 12){
+    if(parseInt(time.split(':')[0],10) < 12){
         time = time + 'AM'
     }else{
         time = time +' PM'
