@@ -52,7 +52,7 @@ async function commandHandler(event){
                         //時間過一半會提醒
                         setTimeout(reminder.bind(null, sessionTime), Math.floor(sessionTime/2))
                         //結束諮商 無法傳送訊息到web端 暫時設定十秒
-                        setTimeout(endSession, 1000 * 60)
+                        setTimeout(endSession, sessionTime)
                         autoReply.replyHandler(event, '已幫您與諮商師進行連接')
                         console.log(inSession.userID + ' 開始諮商')
                         return;
