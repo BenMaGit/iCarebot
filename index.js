@@ -2,7 +2,8 @@ const linebot = require('linebot');
 const express = require('express');
 const mongoose = require('mongoose')
 const controllers = require('./controllers')
-
+const Appointment = require('./models/appointment')
+const template = require('./utils/templates')
 
 const bot = linebot({
     channelId: process.env.channelId,
@@ -50,6 +51,25 @@ socket.on('webSent', (obj)=>{
 socket.on('reminder', (obj)=>{
     console.log(obj.profile.userID +"got reminder")
     bot.push(obj.profile.userID, 'You have an appointment at ' + obj.time + ' later today')
+})
+
+socket.on('therapistChanged', async (data)=>{
+    let date = data.time.split(' ')[0]
+    let time = data.time.split(' ')[1]
+    console.log(date+" "+time)
+    if(time < 12){
+        time = time + 'AM'
+    }else{
+        time = time +' PM'
+    }
+    let appointment = await Appointment.checkAvailableTime(date, time)
+    console.log(appointment)
+    appointment.updateOne({therapist:data.sub})
+    bot.push(appointment.profile.userID, template.changeConfirmation(appointment, data.sub))
+    console.log(appointment.profile.userID)
+})
+socket.on('broadcast', (message)=>{
+    bot.broadcast(message)
 })
 
 

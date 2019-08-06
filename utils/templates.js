@@ -111,6 +111,26 @@ function appointmentTemplate (){
       }
       return template
 }
+
+function changeConfirmation(appointment, sub){
+  let template = {
+    "type": "template",
+    "altText": "this is a buttons template",
+    "template": {
+      "type": "buttons",
+      "actions": [
+        {
+          "type": "postback",
+          "label": "取消",
+          "text": "取消預約"
+        }
+      ],
+      "text": "您先前預約與"+ appointment.therapist +"諮商的時段,由於諮商師臨時有事,目前由 "+sub+"代班,如果您不希望與他進行諮商,請取消預約並重新開始預約流程"
+    }
+  }
+  return template
+
+}
 const generateAvailableTimeSlot = async (date) =>{
   let schedule =['9:00AM', '10:00AM', '11:00AM', '13:00PM', '14:00PM', '15:00PM']
   let bookedSlot =[]
@@ -336,5 +356,6 @@ module.exports = {
     timeColumnTemplate,
     generateAvailableTimeSlot,
     cancelationTemplate,
-    topicTemplate
+    topicTemplate,
+    changeConfirmation
 }
