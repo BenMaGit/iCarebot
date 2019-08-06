@@ -65,8 +65,8 @@ socket.on('therapistChanged', async (data)=>{
     console.log(date+" "+time)
     let appointment = await Appointment.checkAvailableTime(date, time)
     console.log(appointment)
-    appointment.updateOne({therapist:data.sub})
-    bot.push(appointment.profile.userID, template.changeConfirmation(appointment, data.sub))
+    await appointment.updateOne({therapist:data.sub})
+    bot.push(appointment.profile.userID, "HELLO")
     console.log(appointment.profile.userID)
 })
 socket.on('broadcast', (message)=>{
