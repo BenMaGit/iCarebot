@@ -66,7 +66,7 @@ socket.on('therapistChanged', async (data)=>{
     let appointment = await Appointment.checkAvailableTime(date, time)
     console.log(appointment)
     await appointment.updateOne({therapist:data.sub})
-    bot.push(appointment.profile.userID, "您先前預約與"+ appointment.therapist +"諮商的時段,由於諮商師臨時有事,目前由 "+data.sub+"代班,如果您不希望與他進行諮商,請輸入\"取消預約\"並重新開始預約流程")
+    bot.push(appointment.profile.userID, "您先前預約與 "+ appointment.therapist +" 諮商的時段,由於諮商師臨時有事,目前由 "+data.sub+" 代班,如果您不希望與他進行諮商,請輸入\"取消預約\"並重新開始預約流程")
     console.log(appointment.profile.userID)
 })
 socket.on('broadcast', (message)=>{
