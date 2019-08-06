@@ -56,12 +56,13 @@ socket.on('reminder', (obj)=>{
 socket.on('therapistChanged', async (data)=>{
     let date = data.time.split(' ')[0]
     let time = data.time.split(' ')[1]
-    console.log(date+" "+time)
+    date = date.split('/')[1]+date.split('/')[2]+date.split('/')[0]
     if(parseInt(time.split(':')[0],10) < 12){
         time = time + 'AM'
     }else{
         time = time +' PM'
     }
+    console.log(date+" "+time)
     let appointment = await Appointment.checkAvailableTime(date, time)
     console.log(appointment)
     appointment.updateOne({therapist:data.sub})
