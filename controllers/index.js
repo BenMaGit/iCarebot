@@ -79,26 +79,7 @@ async function commandHandler(event){
                 message : event.message.text,
                 therapist : therapist
                 }
-       
-        //TODO Determine which therapist should receive the message
         socket.emit('lineSent', data)
-/*         var options = {
-            method: 'POST',
-            uri: 'http://35.194.253.53:3000/lineSend',
-            body: {
-                name : profile.name,
-                userId : profile.userID,
-                message: event.message.text
-            },
-            json: true 
-        };
-        rp(options).then(function (res) {
-            // POST succeeded...
-            console.log(res.msg)
-        })
-        .catch(function (err) {
-            // POST failed...
-        }); */
     } 
 }
 async function postbackHandler(event){
